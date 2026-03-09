@@ -25,6 +25,9 @@ public class MouseHandler extends MouseAdapter {
                 gp.petManager.createDog();
                 gp.pet = gp.petManager.currentPet;
                 gp.pet.name = gp.petNameInput;
+                gp.pet.petType = "dog";
+                gp.pet.getPetImage();
+
 
                 gp.gameState = gp.PLAY_STATE;
             }
@@ -36,6 +39,9 @@ public class MouseHandler extends MouseAdapter {
                 gp.petManager.createCat();
                 gp.pet = gp.petManager.currentPet;
                 gp.pet.name = gp.petNameInput;
+                gp.pet.petType = "cat";
+                gp.pet.getPetImage();
+
 
                 gp.gameState = gp.PLAY_STATE;
             }
@@ -47,6 +53,8 @@ public class MouseHandler extends MouseAdapter {
                 gp.petManager.createKoala();
                 gp.pet = gp.petManager.currentPet;
                 gp.pet.name = gp.petNameInput;
+                gp.pet.petType = "koala";
+                gp.pet.getPetImage();
 
                 gp.gameState = gp.PLAY_STATE;
             }

@@ -17,13 +17,17 @@ public class UI {
     public int catX, catY;
     public int koalaX, koalaY;
 
-    public int buttonWidth = 420;
+    public int buttonWidth = 450;
     public int buttonHeight = 50;
 
     // message system
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
+
+	// financial tracking
+	public int foodCosts = 0;
+	public int vetCosts = 0;
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -38,7 +42,48 @@ public class UI {
         messageOn = true;
     }
 
+	public void drawWallet(Graphics2D g2){
+
+		// dark background
+		g2.setColor(new Color(232,169,97
+		));
+		g2.fillRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
+		//border
+		g2.setColor(new Color(115,83 ,47));
+		g2.setStroke(new java.awt.BasicStroke(5));
+		g2.drawRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
+
+		g2.setFont(smallFont);
+		g2.setColor(Color.WHITE);
+
+		int x = gp.tileSize * 8;
+		int y = gp.tileSize * 6;
+
+		g2.setFont(optionFont);
+		g2.drawString("Financial Overview", x, y);
+
+		y += gp.tileSize * 2;
+		g2.drawString("Current Savings: $" + gp.money, x, y);
+
+		y += gp.tileSize;
+		g2.drawString("Total Spent: $" + gp.totalSpent, x, y);
+
+		y += gp.tileSize * 2;
+		g2.drawString("Food Costs: $" + foodCosts, x, y);
+
+		y += gp.tileSize;
+		g2.drawString("Vet Costs: $" + vetCosts, x, y);
+
+		y += gp.tileSize * 2;
+		g2.drawString("Press I to close", x, y);
+	}
+
     public void draw(Graphics2D g2){
+
+		if(gp.showWallet){
+			drawWallet(g2);
+			return;
+		}
 
         if(gp.gameState == gp.TITLE_STATE){
             drawTitleScreen(g2);

@@ -8,6 +8,7 @@ public class KeyHandler implements KeyListener {
     public boolean upPressed, downPressed, leftPressed, rightPressed;
     public boolean feedPressed, playPressed, restPressed;
     public boolean onePressed, twoPressed, threePressed;
+    public boolean walletPressed;
 
     GamePanel gp;
 
@@ -49,6 +50,8 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_1) onePressed = true;
         if (code == KeyEvent.VK_2) twoPressed = true;
         if (code == KeyEvent.VK_3) threePressed = true;
+
+        if(code == KeyEvent.VK_I) walletPressed = true;
     }
 
     @Override
@@ -68,6 +71,8 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_1) onePressed = false;
         if (code == KeyEvent.VK_2) twoPressed = false;
         if (code == KeyEvent.VK_3) threePressed = false;
+
+        if(code == KeyEvent.VK_I) walletPressed = false;
     }
 
     

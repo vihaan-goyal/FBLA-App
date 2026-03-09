@@ -68,6 +68,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     // MONEY SYSTEM
     public int money = 100;
+    public int totalSpent = 0;
+    public boolean showWallet = false;
 
     //OBJECTS
     public SuperObject obj[] = new SuperObject[20];
@@ -155,31 +157,20 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void Update() {
 
-        if(gameState == TITLE_STATE){
-
-        if(keyH.onePressed){
-            pet = petManager.createDog();
-            pet.name = petNameInput;
-            gameState = PLAY_STATE;
-        }
-
-        if(keyH.twoPressed){
-            pet = petManager.createCat();
-            pet.name = petNameInput;
-            gameState = PLAY_STATE;
-        }
-
-        if(keyH.threePressed){
-            pet = petManager.createKoala();
-            pet.name = petNameInput;
-            gameState = PLAY_STATE;
-        }
-}
-
         if (gameState == PLAY_STATE) {
 
             // player movement
             player.Update();
+
+            if(keyH.walletPressed){
+                showWallet = !showWallet;
+                keyH.walletPressed = false;
+            }
+
+            /*if(!showWallet){
+                player.Update();
+            }*/
+        
 
             // update pet if one exists
             if (petManager.currentPet != null) {
@@ -192,6 +183,7 @@ public class GamePanel extends JPanel implements Runnable {
                 if (keyH.feedPressed && money >= 5) {
                     pet.feed();
                     money -= 5;
+                    totalSpent += 5;
                     keyH.feedPressed = false;
                 }
 
@@ -199,6 +191,7 @@ public class GamePanel extends JPanel implements Runnable {
                 if (keyH.playPressed && money >= 10) {
                     pet.play();
                     money -= 10;
+                    totalSpent += 10;
                     keyH.playPressed = false;
                 }
 

@@ -203,14 +203,14 @@ public class Pet extends Entity {
 
     public void getPetImage() {
 
-        up1 = setup("happy");
-        up2 = setup("happy");
+        up1 = setup("dog_up_1");
+        up2 = setup("dog_up_1");
 
-        down1 = setup("happy");
-        down2 = setup("happy");
+        down1 = setup("dog_left_1");
+        down2 = setup("dog_left_1");
 
-        left1 = setup("happy");
-        left2 = setup("happy");
+        left1 = setup("dog_left_1");
+        left2 = setup("dog_left_1");
 
         right1 = setup("dog_right_1");
         right2 = setup("dog_right_1");

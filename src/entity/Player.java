@@ -152,8 +152,9 @@ public class Player extends Entity {
 
             if(objectName.equals("Chest")) {
 
-                gp.money += 10;
-                gp.ui.showMessage("+$10 from chest!");
+                int money = (int)(Math.random() * 10) + 5; // Random money between 5 and 15
+                gp.money += money;
+                gp.ui.showMessage("+$" + money + " from chest!");
                 gp.obj[i] = null;
             }
         }

@@ -18,11 +18,15 @@ public class AssetSetter {
 		gp.obj[0].worldY = 10 * gp.tileSize;
 
 		gp.obj[1] = new OBJ_Chest(gp);
-		gp.obj[1].worldX = 30 * gp.tileSize;
-		gp.obj[1].worldY = 20 * gp.tileSize;
+		gp.obj[1].worldX = 51 * gp.tileSize;
+		gp.obj[1].worldY = 15 * gp.tileSize;
 
 		gp.obj[2] = new OBJ_Chest(gp);
 		gp.obj[2].worldX = 50 * gp.tileSize;
 		gp.obj[2].worldY = 40 * gp.tileSize;
+
+		gp.obj[3] = new OBJ_Chest(gp);
+		gp.obj[3].worldX = 50 * gp.tileSize;
+		gp.obj[3].worldY = 15 * gp.tileSize;
 	}
 }

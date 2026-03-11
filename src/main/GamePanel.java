@@ -73,9 +73,12 @@ public class GamePanel extends JPanel implements Runnable {
     public Pet pet = null;
 
     // MONEY SYSTEM
-    public int money = 100;
+    public int money = 0;
     public int totalSpent = 0;
     public boolean showWallet = false;
+
+    //TASKS
+    public boolean showTasks = false;
 
     //OBJECTS
     public SuperObject obj[] = new SuperObject[20];
@@ -111,21 +114,6 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
     public void setupGame() {
-
-        taskManager.addTask(new Task(
-                "Visit Park",
-                "Take your pet to the park",
-                30 * tileSize,
-                25 * tileSize
-        ));
-
-        taskManager.addTask(new Task(
-                "Visit Vet",
-                "Take your pet for a checkup",
-                10 * tileSize,
-                40 * tileSize
-        ));
-
         aSetter.setObject();
         aSetter.setNPC();
         gameState = TITLE_STATE;
@@ -169,8 +157,6 @@ public class GamePanel extends JPanel implements Runnable {
 		pet.energy -= 6;
 		pet.happiness -= 4;
 
-		money += 20;
-
 		pet.checkHealth();
 
 		if(currentDay > MAX_DAYS) {
@@ -190,22 +176,13 @@ public class GamePanel extends JPanel implements Runnable {
             if(keyH.walletPressed){
                 showWallet = !showWallet;
                 keyH.walletPressed = false;
+                showTasks = false;
             }
         
-            if(keyH.taskPressed && keyH.taskToggleReady){
-
-                ui.showTasks = !ui.showTasks;
-
-                keyH.taskToggleReady = false;
-            }
-
-            if(keyH.taskPressed && keyH.taskToggleReady){
-
-                ui.showTasks = !ui.showTasks;
-
+            if(keyH.taskPressed){
+                showTasks = !showTasks;
                 showWallet = false;
-
-                keyH.taskToggleReady = false;
+                keyH.taskPressed = false;
             }
 
             // update pet if one exists

@@ -45,4 +45,8 @@ public class Entity {
 
 		g2.drawImage(image, screenX, screenY, null);
 	}
+
+	public void interact() {
+    	// default: do nothing	
+	}		
 }

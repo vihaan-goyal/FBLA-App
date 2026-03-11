@@ -7,6 +7,8 @@ public class TaskManager {
 
     GamePanel gp;
 
+    public boolean rewardGiven = false;
+
     public ArrayList<Task> tasks = new ArrayList<>();
 
     public TaskManager(GamePanel gp) {
@@ -17,7 +19,7 @@ public class TaskManager {
         tasks.add(t);
     }
 
-    public void update() {
+   public void update() {
 
         for(Task t : tasks) {
 
@@ -25,9 +27,18 @@ public class TaskManager {
 
                 if(t.checkCompletion(gp.player.worldX, gp.player.worldY)) {
 
+                    t.completed = true;
+
                     gp.ui.showMessage("Task Completed: " + t.name);
+
+                    if(gp.petManager.currentPet != null){
+                        gp.petManager.currentPet.happiness += 20;
+                    }
+
                 }
+
             }
+
         }
     }
 
@@ -39,4 +50,5 @@ public class TaskManager {
 
         return true;
     }
+
 }

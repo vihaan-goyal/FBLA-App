@@ -37,9 +37,7 @@ public class UI {
 	public String[] dialogueLines;
 	public int dialogueIndex = 0;
 
-	//task system
-	public boolean showTasks = false;
-
+	
     public UI(GamePanel gp){
         this.gp = gp;
 
@@ -85,45 +83,11 @@ public class UI {
 		g2.drawString("Wiseman: " + text, textX, textY);
 	}
 
-	public void drawWallet(Graphics2D g2){
-
-		// dark background
-		g2.setColor(new Color(232,169,97
-		));
-		g2.fillRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
-		//border
-		g2.setColor(new Color(115,83 ,47));
-		g2.setStroke(new java.awt.BasicStroke(5));
-		g2.drawRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
-
-		g2.setFont(smallFont);
-		g2.setColor(Color.WHITE);
-
-		int x = gp.tileSize * 8;
-		int y = gp.tileSize * 6;
-
-		g2.setFont(optionFont);
-		g2.drawString("Financial Overview", x, y);
-
-		y += gp.tileSize * 2;
-		g2.drawString("Current Savings: $" + gp.money, x, y);
-
-		y += gp.tileSize;
-		g2.drawString("Total Spent: $" + gp.totalSpent, x, y);
-
-		y += gp.tileSize * 2;
-		g2.drawString("Food Costs: $" + foodCosts, x, y);
-
-		y += gp.tileSize;
-		g2.drawString("Vet Costs: $" + vetCosts, x, y);
-
-		y += gp.tileSize * 2;
-		g2.drawString("Press I to close", x, y);
-	}
+	
 
     public void draw(Graphics2D g2){
 
-		if(showTasks){
+		if(gp.showTasks){
 			drawTasks(g2);
 			return;
 		}
@@ -289,9 +253,28 @@ public class UI {
 
 		for(Task t : gp.taskManager.tasks){
 
-			String status = t.completed ? "✓ " : "• ";
+			int boxSize = 24;
 
-			g2.drawString(status + t.name, x, y);
+			int boxX = x;
+			int boxY = y - 20;
+
+			// draw checkbox square
+			g2.setColor(Color.WHITE);
+			g2.drawRect(boxX, boxY, boxSize, boxSize);
+
+			// draw checkmark if completed
+			if(t.completed){
+
+				g2.setColor(Color.GREEN);
+				g2.setStroke(new java.awt.BasicStroke(4));
+
+				g2.drawLine(boxX + 4, boxY + 14, boxX + 10, boxY + 20);
+				g2.drawLine(boxX + 10, boxY + 20, boxX + 20, boxY + 6);
+			}
+
+			// draw task name
+			g2.setColor(Color.WHITE);
+			g2.drawString(t.name, x + 40, y);
 
 			y += gp.tileSize;
 		}
@@ -299,5 +282,41 @@ public class UI {
 		y += gp.tileSize;
 
 		g2.drawString("Press T to close", x, y);
+	}
+
+	public void drawWallet(Graphics2D g2){
+
+		// dark background
+		g2.setColor(new Color(232,169,97
+		));
+		g2.fillRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
+		//border
+		g2.setColor(new Color(115,83 ,47));
+		g2.setStroke(new java.awt.BasicStroke(5));
+		g2.drawRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
+
+		g2.setFont(smallFont);
+		g2.setColor(Color.WHITE);
+
+		int x = gp.tileSize * 8;
+		int y = gp.tileSize * 6;
+
+		g2.setFont(optionFont);
+		g2.drawString("Financial Overview", x, y);
+
+		y += gp.tileSize * 2;
+		g2.drawString("Current Savings: $" + gp.money, x, y);
+
+		y += gp.tileSize;
+		g2.drawString("Total Spent: $" + gp.totalSpent, x, y);
+
+		y += gp.tileSize * 2;
+		g2.drawString("Food Costs: $" + foodCosts, x, y);
+
+		y += gp.tileSize;
+		g2.drawString("Vet Costs: $" + vetCosts, x, y);
+
+		y += gp.tileSize * 2;
+		g2.drawString("Press I to close", x, y);
 	}
 }

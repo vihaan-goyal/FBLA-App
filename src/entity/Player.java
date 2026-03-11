@@ -44,8 +44,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 34;
+        worldY = gp.tileSize * 25;
         speed = 5;
         direction = "down";
     }
@@ -78,6 +78,7 @@ public class Player extends Entity {
 
     public void Update() {
 
+
         if(keyH.enterPressed){
 
             for(int i = 0; i < gp.npc.length; i++){
@@ -89,18 +90,7 @@ public class Player extends Entity {
 
                     if(dx < gp.tileSize*2 && dy < gp.tileSize*2){
 
-                        String type = gp.petManager.currentPet.petType;
-                        String name = gp.petManager.currentPet.name;
-
-
-                        gp.ui.startDialogue(new String[]{
-                            "Hello, fair traveler!",
-                            "You don't remember? You helplessly begged for a pet from your Dad.",
-                            "Your pet is a little " + type.toUpperCase() + ", and you named it " + name.toUpperCase() + ".",
-                            "With my awesome magic, I've granted you $100 to start off.",
-                            "If you take good care of your pet, I might even give you some more.",
-                            "Just talk to me after you've completed some tasks on your TODO list."
-                        });
+                        gp.npc[i].interact();
 
                         keyH.enterPressed = false;
                         return;
@@ -109,17 +99,7 @@ public class Player extends Entity {
             }
         }
 
-        if(gp.taskManager.allCompleted()){
 
-            gp.money += 100;
-            gp.ui.showMessage("Thanks! Here is your reward.");
-
-        }else{
-
-            gp.ui.showMessage("You still have tasks to finish.");
-        }
-
-        if(keyH.taskPressed) gp.ui.showTasks = !gp.ui.showTasks;
         
         if (keyH.upPressed || keyH.downPressed ||
             keyH.leftPressed || keyH.rightPressed) {

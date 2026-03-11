@@ -206,6 +206,8 @@ public class GamePanel extends JPanel implements Runnable {
                     if(inventoryManager.removeItem("food", 1)) {
 
                         pet.feed();
+                      
+
 
                     } else {
 

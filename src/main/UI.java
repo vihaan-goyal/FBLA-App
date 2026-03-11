@@ -5,9 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 import quest.Task;
-import entity.NPC_Merchant;
-import entity.NPC_OldMan;
-import inventory.InventoryManager;
 
 public class UI {
 

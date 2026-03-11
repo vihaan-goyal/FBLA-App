@@ -204,7 +204,7 @@ public class UI {
         g2.setFont(smallFont);
         g2.setColor(Color.white);
 
-        g2.drawString("Money: $" + gp.money, 20, 40);
+        //g2.drawString("Money: $" + gp.money, 20, 40);
 
         if(gp.petManager.currentPet != null){
 

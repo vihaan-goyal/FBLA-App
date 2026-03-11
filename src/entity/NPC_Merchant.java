@@ -54,6 +54,7 @@ public class NPC_Merchant extends Entity {
 
         if(gp.money >= 10) {
 
+            gp.wallet.addTransaction("Pet Food", -10);
             gp.money -= 10;
             gp.ui.foodCosts += 10;
             gp.totalSpent += 10;

@@ -176,9 +176,10 @@ public class Player extends Entity {
 
             if(objectName.equals("Chest")) {
 
-                int money = (int)(Math.random() * 10) + 5; // Random money between 5 and 15
-                gp.money += money;
-                gp.ui.showMessage("+$" + money + " from chest!");
+                int mon = (int)(Math.random() * 10) + 5; // Random money between 5 and 15
+                gp.wallet.addTransaction("Chest Money", mon);
+                gp.money += mon;
+                gp.ui.showMessage("+$" + mon + " from chest!");
                 gp.obj[i] = null;
             }
         }

@@ -15,6 +15,8 @@ import object.SuperObject;
 import entity.Entity;
 import quest.TaskManager;
 import inventory.InventoryManager;
+import finance.WalletManager;
+
 
 
 
@@ -51,13 +53,15 @@ public class GamePanel extends JPanel implements Runnable {
     // SYSTEM
     TileManager tileManager = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
-	public CollisionChecker cChecker = new CollisionChecker(this);
+	AssetSetter aSetter = new AssetSetter(this);
+    MouseHandler mouseH = new MouseHandler(this);
+    public CollisionChecker cChecker = new CollisionChecker(this);
     public UI ui = new UI(this);
     public PetManager petManager = new PetManager(this);
-    AssetSetter aSetter = new AssetSetter(this);
-    MouseHandler mouseH = new MouseHandler(this);
     public TaskManager taskManager = new TaskManager(this);
     public InventoryManager inventoryManager = new InventoryManager(this);
+    public WalletManager wallet = new WalletManager();
+
 
     Thread gameThread;
 
@@ -228,6 +232,7 @@ public class GamePanel extends JPanel implements Runnable {
                 // PLAY
                 if (keyH.playPressed && money >= 10) {
                     pet.play();
+                    wallet.addTransaction("Pet Played", -10);
                     money -= 10;
                     totalSpent += 10;
                     keyH.playPressed = false;

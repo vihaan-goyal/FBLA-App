@@ -64,6 +64,7 @@ public class NPC_OldMan extends Entity {
             String type = gp.petManager.currentPet.petType;
             String name = gp.petManager.currentPet.name;
 
+            gp.wallet.addTransaction("Initial Reward", 100);
             gp.money += 100;
 
             gp.ui.startDialogue(new String[]{
@@ -107,6 +108,7 @@ public class NPC_OldMan extends Entity {
 
 
 
+                gp.wallet.addTransaction("Quest Reward", 50);
                 gp.money += 50;
 
                 questStage = 2;
@@ -131,7 +133,9 @@ public class NPC_OldMan extends Entity {
                     "Your Dad will sure be happy!"
                 });
 
+                gp.wallet.addTransaction("Quest Reward", 50);
                 gp.money += 50;
+
 
                 questStage = 2;
             }

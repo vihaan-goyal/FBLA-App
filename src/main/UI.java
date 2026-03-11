@@ -3,6 +3,9 @@ package main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+
+import finance.Transaction;
+
 import java.awt.BasicStroke;
 
 import quest.Task;
@@ -14,6 +17,7 @@ public class UI {
     Font titleFont;
     Font optionFont;
     Font smallFont;
+    Font menuFont;
 
     // pet button positions
     public int dogX, dogY;
@@ -44,6 +48,7 @@ public class UI {
         this.gp = gp;
 
         titleFont = new Font("Segoe UI", Font.BOLD, 80);
+        menuFont = new Font("Segoe UI", Font.BOLD, 50);
         optionFont = new Font("Segoe UI", Font.PLAIN, 36);
         smallFont = new Font("Segoe UI", Font.PLAIN, 20);
     }
@@ -141,9 +146,10 @@ public class UI {
         int x = gp.tileSize * 8;
         int y = gp.tileSize * 6;
 
-        g2.setFont(optionFont);
+        g2.setFont(menuFont);
         g2.drawString("Pet Status", x, y);
 
+        g2.setFont(optionFont);
         if(gp.petManager.currentPet != null){
 
             var pet = gp.petManager.currentPet;
@@ -292,8 +298,6 @@ public class UI {
         g2.setFont(smallFont);
         g2.setColor(Color.white);
 
-        //g2.drawString("Money: $" + gp.money, 20, 40);
-
         g2.drawString("F = Feed", 20, 180);
         g2.drawString("P = Play ($10)", 20, 210);
         g2.drawString("R = Rest (Fee)", 20, 240);
@@ -332,9 +336,10 @@ public class UI {
         int x = gp.tileSize * 8;
         int y = gp.tileSize * 6;
 
-        g2.setFont(optionFont);
+        g2.setFont(menuFont);
         g2.drawString("Inventory", x, y);
 
+        g2.setFont(optionFont);
         y += gp.tileSize * 2;
 
         int foodCount = gp.inventoryManager.getItemCount("food");
@@ -348,7 +353,6 @@ public class UI {
     //DRAW TASKS
 	public void drawTasks(Graphics2D g2){
 
-		// background (same style as wallet)
 		g2.setColor(new Color(232,169,97));
 		g2.fillRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
 
@@ -357,15 +361,19 @@ public class UI {
 		g2.setStroke(new java.awt.BasicStroke(5));
 		g2.drawRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
 
-		g2.setFont(optionFont);
 		g2.setColor(Color.WHITE);
 
 		int x = gp.tileSize * 8;
 		int y = gp.tileSize * 6;
 
+		g2.setFont(menuFont);
+
+
 		g2.drawString("Tasks", x, y);
 
 		y += gp.tileSize * 2;
+
+        g2.setFont(optionFont);
 
 		for(Task t : gp.taskManager.tasks){
 
@@ -417,11 +425,12 @@ public class UI {
 		int x = gp.tileSize * 8;
 		int y = gp.tileSize * 6;
 
-		g2.setFont(optionFont);
+		g2.setFont(menuFont);
 		g2.drawString("Wallet", x, y);
 
+        g2.setFont(optionFont);
 		y += gp.tileSize * 2;
-		g2.drawString("Current Savings: $" + gp.money, x, y);
+		g2.drawString("Balance: $" + gp.money, x, y);
 
 		y += gp.tileSize;
 		g2.drawString("Total Spent: $" + gp.totalSpent, x, y);
@@ -434,5 +443,27 @@ public class UI {
 
 		y += gp.tileSize * 2;
 		g2.drawString("Press 1 to close", x, y);
-	}
+
+        // -------- TRANSACTION HISTORY --------
+
+        int transX = gp.screenWidth/2 + 40;   // right side of wallet
+        int transY = gp.screenHeight/4 + 120;
+
+        g2.setFont(menuFont);
+        g2.drawString("Transactions", transX, transY-72);
+        g2.setFont(smallFont);
+        for(Transaction t : gp.wallet.history){
+
+            String sign = (t.amount > 0 ? "+" : "");
+
+            g2.drawString(
+                sign + t.amount + " : " + t.description,
+                transX,
+                transY
+            );
+
+            transY += 25;
+        }
+    }
+
 }

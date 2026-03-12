@@ -20,7 +20,7 @@ public class Pet extends Entity {
 
     
     public int hunger = 100;
-    public int happiness = 100;
+    public int happiness = 50;
     public int energy = 100;
 
     public String mood = "Happy";

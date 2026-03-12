@@ -76,8 +76,7 @@ public class NPC_Merchant extends Entity {
             gp.inventoryManager.addItem("food", 1);
 
             gp.ui.startDialogue(new String[]{
-                "Here you go!",
-                "One fresh bag of pet food."
+                "Here you go, one fresh bag of pet food!"
             });
 
         } 

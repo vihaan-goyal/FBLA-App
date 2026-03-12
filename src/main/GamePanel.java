@@ -16,6 +16,7 @@ import entity.Entity;
 import quest.TaskManager;
 import inventory.InventoryManager;
 import finance.WalletManager;
+import java.awt.Rectangle;
 
 
 
@@ -93,6 +94,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     //PET STATS
     public boolean petStatsOpen = false;
+
+    //PARK
+
+    public Rectangle parkArea = new Rectangle(
+        50 * tileSize,
+        22 * tileSize,
+        10 * tileSize,
+        8 * tileSize
+    );
 
     
     public GamePanel() {

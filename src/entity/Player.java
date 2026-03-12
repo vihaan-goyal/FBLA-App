@@ -11,6 +11,10 @@ import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
 
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 public class Player extends Entity {
 
     GamePanel gp;
@@ -20,6 +24,8 @@ public class Player extends Entity {
     public final int screenY;
 
     int standCounter = 0;
+
+    int parkTimer = 0;
 
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -99,6 +105,37 @@ public class Player extends Entity {
             }
         }
 
+        
+
+        Rectangle playerRect = new Rectangle(worldX, worldY, gp.tileSize, gp.tileSize);
+
+        Pet pet = gp.petManager.currentPet;
+        Rectangle petRect = new Rectangle(pet.worldX, pet.worldY, gp.tileSize, gp.tileSize);
+
+
+        boolean playerInPark = gp.parkArea.intersects(playerRect);
+        boolean petInPark = gp.parkArea.intersects(petRect);
+
+        
+        if(playerInPark && petInPark){
+
+            parkTimer++;
+            System.out.println("Timer: " + parkTimer);
+
+            if(parkTimer >= 60){
+                pet.happiness += 3;
+
+                if(pet.happiness > 100){
+                    pet.happiness = 100;
+                }
+
+                System.out.println("Happiness increased!");
+                parkTimer = 0;
+            }
+
+        }else{
+            parkTimer = 0;
+        }
 
         
         if (keyH.upPressed || keyH.downPressed ||

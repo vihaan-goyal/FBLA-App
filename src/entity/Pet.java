@@ -271,7 +271,6 @@ public class Pet extends Entity {
     }
 
     public BufferedImage setup(String imageName) {
-
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 

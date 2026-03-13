@@ -5,6 +5,8 @@ import entity.NPC_Merchant;
 import entity.NPC_OldMan;
 import entity.NPC_Veterinarian;
 
+import quiz.NPC_QuizMaster;
+
 
 public class AssetSetter {
 	GamePanel gp;
@@ -27,6 +29,11 @@ public class AssetSetter {
 		gp.npc[2] = new NPC_Veterinarian(gp);
 		gp.npc[2].worldX = gp.tileSize * 20;
 		gp.npc[2].worldY = gp.tileSize * 25;
+
+		// QUIZ MASTER
+		gp.npc[3] = new NPC_QuizMaster(gp);
+		gp.npc[3].worldX = 36 * gp.tileSize;
+		gp.npc[3].worldY = 23 * gp.tileSize;
 
 	}
 	

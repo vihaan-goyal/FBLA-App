@@ -43,13 +43,15 @@ public class UI {
 	public int foodCosts = 0;
 	public int vetCosts = 0;
 
-	//NPC dialogue
 	// dialogue system
 	public boolean dialogueOn = false;
 	public String[] dialogueLines;
 	public int dialogueIndex = 0;
     public String speaker = "NPC";
 
+    //quiz system
+    public boolean typingMode = false;
+    public String currentInput = "";
 	
     public UI(GamePanel gp){
         this.gp = gp;
@@ -140,6 +142,20 @@ public class UI {
             g2.drawString("4 = Pet Stats" , 20, 130);
             g2.drawString("---------------", 20, 150);
 
+        }
+        
+        if(typingMode){
+            g2.setColor(new Color(0,0,0,200));
+            g2.fillRect(gp.tileSize,
+                        gp.screenHeight - gp.tileSize*4+10,
+                        gp.screenWidth - gp.tileSize*3,
+                        gp.tileSize);
+
+            g2.setColor(Color.WHITE);
+            g2.setFont(optionFont);
+            g2.drawString("Answer: " + currentInput,
+                        gp.tileSize,
+                        gp.screenHeight - gp.tileSize * 3);
         }
     }
 

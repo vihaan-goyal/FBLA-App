@@ -35,12 +35,66 @@ public class KeyHandler implements KeyListener {
                     gp.petNameInput.substring(0, gp.petNameInput.length()-1);
             }
         }
+        if(gp.ui.typingMode){
+
+            char c = e.getKeyChar();
+
+            if(Character.isLetterOrDigit(c) || c == ' '){
+                gp.ui.currentInput += c;
+            }
+        }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
 
         int code = e.getKeyCode();
+
+        if(code == KeyEvent.VK_BACK_SPACE){
+
+            if(gp.ui.typingMode && gp.ui.currentInput.length() > 0){
+
+                gp.ui.currentInput =
+                    gp.ui.currentInput.substring(0, gp.ui.currentInput.length() - 1);
+
+            }
+        }
+
+        if(code == KeyEvent.VK_ENTER) {
+
+            // submit answer first
+            if(gp.ui.typingMode){
+
+                gp.quizManager.submitAnswer(gp.ui.currentInput);
+
+                gp.ui.currentInput = "";
+                gp.ui.typingMode = false;
+
+                return;
+            }
+
+            // advance dialogue second
+            if(gp.ui.dialogueOn){
+
+                gp.ui.dialogueIndex++;
+
+                if(gp.ui.dialogueIndex >= gp.ui.dialogueLines.length){
+                    gp.ui.dialogueOn = false;
+
+                    if(gp.quizManager.quizState == 1){
+                        gp.quizManager.beginTyping();
+                    }
+                }
+
+                return;
+            }
+
+            enterPressed = true;
+        }
+        // block movement while typing
+            if(gp.ui.typingMode){
+                return;
+            }
 
         if (code == KeyEvent.VK_W) upPressed = true;
         if (code == KeyEvent.VK_S) downPressed = true;
@@ -58,22 +112,6 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_4) petStatsPressed = true;
 
 
-
-        if(code == KeyEvent.VK_ENTER) {
-
-            // advance dialogue if active
-            if(gp.ui.dialogueOn){
-                gp.ui.dialogueIndex++;
-
-                if(gp.ui.dialogueIndex >= gp.ui.dialogueLines.length){
-                    gp.ui.dialogueOn = false;
-                }
-
-                return;
-            }
-
-            enterPressed = true;
-        }
     }
 
     @Override

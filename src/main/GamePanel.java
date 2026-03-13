@@ -14,6 +14,7 @@ import pet.PetManager;
 import object.SuperObject;
 import entity.Entity;
 import quest.TaskManager;
+import quiz.QuizManager;
 import inventory.InventoryManager;
 import finance.WalletManager;
 import java.awt.Rectangle;
@@ -62,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
     public TaskManager taskManager = new TaskManager(this);
     public InventoryManager inventoryManager = new InventoryManager(this);
     public WalletManager wallet = new WalletManager();
+    public QuizManager quizManager = new QuizManager(this);
 
 
     Thread gameThread;

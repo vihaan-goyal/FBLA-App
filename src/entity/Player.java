@@ -80,6 +80,7 @@ public class Player extends Entity {
     }
 
     public void Update() {
+        
         gp.petManager.currentPet.happinessDecay = 3; 
 
 
@@ -129,8 +130,8 @@ public class Player extends Entity {
         }
 
         
-        if (keyH.upPressed || keyH.downPressed ||
-            keyH.leftPressed || keyH.rightPressed) {
+        if ((keyH.upPressed || keyH.downPressed ||
+            keyH.leftPressed || keyH.rightPressed) && (!gp.ui.typingMode)) {
 
             boolean movingVert = keyH.upPressed || keyH.downPressed;
             boolean movingHorz = keyH.leftPressed || keyH.rightPressed;

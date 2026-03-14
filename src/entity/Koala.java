@@ -19,6 +19,5 @@ public class Koala extends Pet {
 
         if(energy > 100) energy = 100;
 
-        updateMood();
     }
 }

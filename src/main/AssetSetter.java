@@ -24,8 +24,8 @@ public class AssetSetter {
 		gp.npc[0].worldY = gp.tileSize * 23;
 
 		gp.npc[1] = new NPC_Merchant(gp);
-		gp.npc[1].worldX = 26 * gp.tileSize;
-		gp.npc[1].worldY = 34 * gp.tileSize;
+		gp.npc[1].worldX = 20 * gp.tileSize;
+		gp.npc[1].worldY = 40 * gp.tileSize;
 
 		gp.npc[2] = new NPC_Veterinarian(gp);
 		gp.npc[2].worldX = gp.tileSize * 20;
@@ -33,7 +33,7 @@ public class AssetSetter {
 
 		// QUIZ MASTER
 		gp.npc[3] = new NPC_QuizMaster(gp);
-		gp.npc[3].worldX = 36 * gp.tileSize;
+		gp.npc[3].worldX = 37 * gp.tileSize;
 		gp.npc[3].worldY = 23 * gp.tileSize;
 
 	}
@@ -48,8 +48,8 @@ public class AssetSetter {
 		gp.obj[1].worldY = 15 * gp.tileSize;
 
 		gp.obj[2] = new OBJ_Chest(gp);
-		gp.obj[2].worldX = 50 * gp.tileSize;
-		gp.obj[2].worldY = 40 * gp.tileSize;
+		gp.obj[2].worldX = 20 * gp.tileSize;
+		gp.obj[2].worldY = 41 * gp.tileSize;
 
 		gp.obj[3] = new OBJ_Chest(gp);
 		gp.obj[3].worldX = 50 * gp.tileSize;

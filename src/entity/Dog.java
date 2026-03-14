@@ -20,6 +20,5 @@ public class Dog extends Pet {
         hunger -= 5;
 
         clampStats();
-        updateMood();
     }
 }

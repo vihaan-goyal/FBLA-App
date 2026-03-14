@@ -18,7 +18,7 @@ public class TileManager {
 	
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
-		tile = new Tile[10];
+		tile = new Tile[30];
 		mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 		
 		GetTileImage();
@@ -26,13 +26,26 @@ public class TileManager {
 	}
 	
 	public void GetTileImage() {
-		setup(0, "grass", false);
-		setup(1, "wall", true);
-		setup(2, "water", true);
-		setup(3, "earth", false);
-		setup(4, "tree", true);
-		setup(5, "sand", false);
-		setup(6, "bush", true);
+		setup(0, "grass", false); //done
+		setup(1, "wall", true); //done
+		setup(2, "water", true); //done
+		setup(3, "lantern", true); //done
+		setup(4, "tree", true); //done
+		setup(5, "sand", false); //done
+		setup(6, "bush", true); //done
+		setup(7, "woodBricks", false); //done
+		setup(8, "sign", true);
+		setup(9, "rock", true); //done
+		setup(10, "stoneBricks", true); //done
+		setup(14, "miniHouse", true); //done
+		setup(15, "redFlower", false); //done
+		setup(16, "purpleFlower", false); //done
+		setup(17, "pinkFlower", false); //done
+		setup(18, "whiteFlower", false); //done
+		setup(19, "tent", true); //done
+		setup(20, "waterBowl", true); //done
+		setup(21, "foodBowl", true); //done
+
 	}
 	
 	public void setup(int index, String imageName, boolean collision) {

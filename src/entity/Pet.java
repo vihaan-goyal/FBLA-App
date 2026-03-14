@@ -92,32 +92,13 @@ public class Pet extends Entity {
             hunger -= hungerDecay;
             happiness -= happinessDecay;
             energy -= energyDecay;
-
-
             clampStats();
-            checkHealth();
 
             statTimer = 0;
         }
     }
 
-    public void checkHealth() {
-
-        if(hunger <= 0 || energy <= 0) {
-            isAlive = false;
-            mood = "Dead";
-            return;
-        }
-
-        if(hunger < 20 || happiness < 20) {
-            isSick = true;
-            mood = "Sick";
-        } else {
-            isSick = false;
-        }
-
-        updateMood();
-    }
+    
 
     protected void clampStats() {
 
@@ -130,9 +111,26 @@ public class Pet extends Entity {
         if(energy < 0) energy = 0;
     }
 
-    protected void updateMood() {
+   protected void updateMood() {
+        // update sickness first
+        if(sick) {
+            mood = "Sick";
+            return;
+        }
 
-        if(hunger < 40) {
+        // Double critical states second
+        if(hunger < 25 && happiness < 25) {
+            mood = "Hangry";
+        }
+        else if(hunger < 25 && energy < 25) {
+            mood = "Lethargic";
+        }
+        else if(energy < 25 && happiness < 25) {
+            mood = "Sluggish";
+        }
+
+        // Single stat states third
+        else if(hunger < 40) {
             mood = "Hungry";
         }
         else if(energy < 40) {
@@ -141,6 +139,11 @@ public class Pet extends Entity {
         else if(happiness < 40) {
             mood = "Sad";
         }
+        else if(hunger < 15 && energy < 15 && happiness < 15){
+            mood = "Miserable";
+        }
+
+        // Normal
         else {
             mood = "Happy";
         }
@@ -155,7 +158,7 @@ public class Pet extends Entity {
         updateMood();
         double chance = Math.random();
 
-        if(chance < 0.1) {  
+        if(chance < 0.10) {  
             sick = true;
             gp.ui.showMessage(name.toUpperCase() + " got sick from the food!");
         }
@@ -183,16 +186,13 @@ public class Pet extends Entity {
         if(mood.equals("Happy")) {
             speed = 4;
         }
-        else if(mood.equals("Hungry")) {
+        else if(mood.equals("Hungry") || mood.equals("Tired") || mood.equals("Sad")) {
+            speed = 3;
+        }
+        else if(mood.equals("Hangry") || mood.equals("Lethargic") || mood.equals("Sluggish")) {
             speed = 2;
         }
-        else if(mood.equals("Tired")) {
-            speed = 1;
-        }
-        else if(mood.equals("Sad")) {
-            speed = 2;
-        }
-        else if(mood.equals("Sick")) {
+        else if(mood.equals("Miserable") || mood.equals("Sick")) {
             speed = 1;
         }
     }
@@ -219,19 +219,19 @@ public class Pet extends Entity {
 
         updateStats();
         updateBehavior();
-
+        updateMood();
 
         if(gameTime > 2400) { //change to 2400 for 20 seconds
 
             sicknessTimer++;
 
-            if(sicknessTimer > 600) {
+            if(sicknessTimer > 1200) {
                 sicknessTimer = 0;
 
                 if(!sick && Math.random() < 0.10) {
                     sick = true;
 
-                    gp.ui.showMessage("Oh no, your pet suddenly got sick!");
+                    gp.ui.showMessage("Oh no, your pet caught an illness!");
                 }
             }
         }
@@ -410,24 +410,49 @@ public class Pet extends Entity {
             g2.drawString(name, nameX, nameY);
         }
 
-        // ---------- MOOD TAG ----------
-        if(mood != null){
+        // --------- MOOD TAG ---------
+if(mood != null){
 
-            g2.setFont(new Font("Arial", Font.PLAIN, 12));
+    g2.setFont(new Font("Arial", Font.PLAIN, 12));
 
-            int moodWidth = g2.getFontMetrics().stringWidth(mood);
-            int moodX = screenX + gp.tileSize/2 - moodWidth/2;
-            int moodY = screenY - 26;
+        int moodWidth = g2.getFontMetrics().stringWidth(mood);
+        int moodX = screenX + gp.tileSize/2 - moodWidth/2;
+        int moodY = screenY - 26;
 
-            g2.setColor(new Color(0,0,0,120));
-            g2.fillRoundRect(moodX - 4, moodY - 12, moodWidth + 8, 16, 6, 6);
+        g2.setColor(new Color(0,0,0,120));
+        g2.fillRoundRect(moodX - 4, moodY - 12, moodWidth + 8, 16, 6, 6);
 
-            if(mood.equals("Happy")) g2.setColor(Color.green);
-            else if(mood.equals("Hungry")) g2.setColor(Color.orange);
-            else if(mood.equals("Sad")) g2.setColor(Color.red);
-            else g2.setColor(Color.yellow);
-            g2.drawString(mood, moodX, moodY);
+        // Mood colors
+        if(mood.equals("Happy")){
+            g2.setColor(Color.green);
         }
+        else if(mood.equals("Hungry")){
+            g2.setColor(Color.orange);
+        }
+        else if(mood.equals("Sad")){
+            g2.setColor(Color.red);
+        }
+        else if(mood.equals("Hangry")){
+            g2.setColor(new Color(255, 80, 80)); // angry red
+        }
+        else if(mood.equals("Lethargic")){
+            g2.setColor(new Color(150, 120, 255)); // tired purple
+        }
+        else if(mood.equals("Sluggish")){
+            g2.setColor(new Color(120, 170, 255)); // low energy blue
+        }
+        else if(mood.equals("Tired")){
+            g2.setColor(Color.yellow);
+        }
+        else if (mood.equals("Miserable")){
+            g2.setColor(new Color(100, 100, 100)); // gray
+        }
+        else{
+            g2.setColor(Color.white);
+        }
+
+        g2.drawString(mood, moodX, moodY);
+    }
 
     }
     

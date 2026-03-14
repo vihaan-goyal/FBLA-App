@@ -180,8 +180,6 @@ public class GamePanel extends JPanel implements Runnable {
 		pet.energy -= 6;
 		pet.happiness -= 4;
 
-		pet.checkHealth();
-
 		if(currentDay > MAX_DAYS) {
 			gameState = REPORT_STATE;
         }

@@ -15,6 +15,8 @@ import java.awt.Font;
 public class NPC_Veterinarian extends Entity {
 
     GamePanel gp;
+    int dialogueStageVet = 0;
+
 
     public NPC_Veterinarian(GamePanel gp) {
         this.gp = gp;
@@ -57,9 +59,21 @@ public class NPC_Veterinarian extends Entity {
                 "It should be fully vaccinated now!"
             });
             oldMan.questStage = 4;
+            return;
         }
 
-        else if(gp.money >= 15) {
+        if(dialogueStageVet == 0){
+            gp.ui.startDialogue(new String[]{
+                "Welcome to the veterinarian office!",
+                "Here, you can purchase medicine for your dog.",
+                "Come back anytime if your pet get sick."
+            });
+
+            dialogueStageVet = 1;
+            return;
+        }
+
+        if(gp.money >= 15) {
 
             gp.money -= 15;            
             gp.wallet.addTransaction("Pet Medicine", -15);

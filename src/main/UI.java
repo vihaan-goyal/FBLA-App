@@ -73,6 +73,8 @@ public class UI {
         }
     }
 
+    
+
     public void showMessage(String text){
         message = text;
         messageOn = true;
@@ -123,38 +125,34 @@ public class UI {
 
     public void draw(Graphics2D g2){
 
-        if(gp.inventoryOpen){
-            drawInventory(g2);
+        if(gp.gameState == gp.PLAY_STATE){
+            drawHUD(g2);
         }
 
-		if(gp.showTasks){
-			drawTasks(g2);
-			return;
-		}
+        if(gp.inventoryOpen){
+            drawInventory(g2);
+            return;
+        }
 
-		if(gp.showWallet){
-			drawWallet(g2);
-			return;
-		}
+        if(gp.showTasks){
+            drawTasks(g2);
+            return;
+        }
+
+        if(gp.showWallet){
+            drawWallet(g2);
+            return;
+        }
 		if(dialogueOn){
 			drawDialogueBox(g2);
 		}
+
+
 
         if(gp.gameState == gp.TITLE_STATE){
             drawTitleScreen(g2);
         }
 
-        if(gp.gameState == gp.PLAY_STATE){
-            drawHUD(g2);
-            g2.setFont(smallFont);
-            //g2.drawString("1: Wallet   2: Inventory   3: Tasks   4: Pet Stats", 20, 40);
-            g2.drawString("1 = Wallet" , 20, 40);
-            g2.drawString("2 = Inventory" , 20, 70);
-            g2.drawString("3 = Tasks" , 20, 100);
-            g2.drawString("4 = Pet Stats" , 20, 130);
-            g2.drawString("---------------", 20, 150);
-
-        }
         
         if(typingMode){
             g2.setColor(new Color(0,0,0,200));
@@ -357,9 +355,16 @@ public class UI {
         g2.setFont(smallFont);
         g2.setColor(Color.white);
 
+        g2.setFont(smallFont);
+        g2.drawString("1 = Wallet" , 20, 40);
+        g2.drawString("2 = Inventory" , 20, 70);
+        g2.drawString("3 = Tasks" , 20, 100);
+        g2.drawString("4 = Pet Stats" , 20, 130);
+        g2.drawString("---------------", 20, 150);
+
         g2.drawString("F = Feed", 20, 180);
         g2.drawString("M = Medicine", 20, 210);
-        g2.drawString("P = Play ($10)", 20, 240);
+        g2.drawString("P = Play", 20, 240);
 
         // message popup
         if(messageOn){

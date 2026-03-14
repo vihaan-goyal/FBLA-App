@@ -92,9 +92,13 @@ public class KeyHandler implements KeyListener {
             enterPressed = true;
         }
         // block movement while typing
-            if(gp.ui.typingMode){
-                return;
-            }
+        if(gp.ui.typingMode){
+            return;
+        }
+        // block menus and movement during dialogue
+        if(gp.ui.dialogueOn){
+            return;
+        }
 
         if (code == KeyEvent.VK_W) upPressed = true;
         if (code == KeyEvent.VK_S) downPressed = true;
@@ -105,10 +109,41 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_P) playPressed = true;
         if(code == KeyEvent.VK_M) gp.player.useMedicine();
 
-        if(code == KeyEvent.VK_1) walletPressed = true;
-        if(code == KeyEvent.VK_2) inventoryPressed = true;
-        if(code == KeyEvent.VK_3) taskPressed = true;
-        if(code == KeyEvent.VK_4) petStatsPressed = true;
+        if(code == KeyEvent.VK_1){
+
+            walletPressed = true;
+
+            gp.inventoryOpen = false;
+            gp.showTasks = false;
+            gp.petStatsOpen = false;
+        }
+
+        if(code == KeyEvent.VK_2){
+
+            inventoryPressed = true;
+
+            gp.showWallet = false;
+            gp.showTasks = false;
+            gp.petStatsOpen = false;
+        }
+
+        if(code == KeyEvent.VK_3){
+
+            taskPressed = true;
+
+            gp.showWallet = false;
+            gp.inventoryOpen = false;
+            gp.petStatsOpen = false;
+        }
+
+        if(code == KeyEvent.VK_4){
+
+            petStatsPressed = true;
+
+            gp.showWallet = false;
+            gp.inventoryOpen = false;
+            gp.showTasks = false;
+        }
 
 
     }
@@ -127,7 +162,7 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_P) playPressed = false;
         if(code == KeyEvent.VK_ENTER) enterPressed = false;
 
-         if(code == KeyEvent.VK_1) walletPressed = false;
+        if(code == KeyEvent.VK_1) walletPressed = false;
         if(code == KeyEvent.VK_2) inventoryPressed = false;
         if(code == KeyEvent.VK_3) taskPressed = false;
         if(code == KeyEvent.VK_4) petStatsPressed = false;

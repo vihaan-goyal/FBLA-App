@@ -219,24 +219,26 @@ public class Player extends Entity {
 
     public void useMedicine() {
 
-        if(gp.inventoryManager.getItemCount("medicine") > 0 && gp.gameState == gp.PLAY_STATE) {
+        if (gp.gameState == gp.PLAY_STATE){
+            if(gp.inventoryManager.getItemCount("medicine") > 0) {
 
-            if(gp.petManager.currentPet.sick) {
+                if(gp.petManager.currentPet.sick) {
 
 
-                gp.petManager.currentPet.sick = false;
+                    gp.petManager.currentPet.sick = false;
 
-                gp.inventoryManager.removeItem("medicine", 1);
+                    gp.inventoryManager.removeItem("medicine", 1);
 
-                gp.ui.showMessage("Your pet feels much better!");
+                    gp.ui.showMessage("Your pet feels much better!");
 
+                } else {
+
+                gp.ui.showMessage("Your dog isn't sick right now!");
+
+                }
             } else {
-
-               gp.ui.showMessage("Your dog isn't sick right now!");
-
+                gp.ui.showMessage("You don't have any medicine.");
             }
-        } else {
-            gp.ui.showMessage("You don't have any medicine.");
         }
     }
 

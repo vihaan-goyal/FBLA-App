@@ -20,7 +20,7 @@ public class Pet extends Entity {
 
     public int hunger = 75;
     public int happiness = 75;
-    public int energy = 0;
+    public int energy = 75;
 
     public String mood = "Happy";
 
@@ -225,7 +225,7 @@ public class Pet extends Entity {
 
             sicknessTimer++;
 
-            if(sicknessTimer > 1200) {
+            if(sicknessTimer > 1200 && ((NPC_OldMan) gp.npc[0]).questStage >= 1) {
                 sicknessTimer = 0;
 
                 if(!sick && Math.random() < 0.10) {

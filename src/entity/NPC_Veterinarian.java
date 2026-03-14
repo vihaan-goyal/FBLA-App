@@ -52,7 +52,7 @@ public class NPC_Veterinarian extends Entity {
         gp.ui.speaker = "Veterinarian";
         if(oldMan.questStage == 3){
             gp.ui.startDialogue(new String[]{
-                "Hello again!",
+                "Hello!",
                 "I gave your pet some shots!",
                 "It should be fully vaccinated now!"
             });

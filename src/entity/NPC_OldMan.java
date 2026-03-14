@@ -95,6 +95,7 @@ public class NPC_OldMan extends Entity {
                     "Excellent work!",
                     "Here is your reward.",
                     "Now that you've learned the ropes, I'll be assigning more tasks.",
+                    "Beware, there has been a sickness going around, and your pet might catch it!",
                     "Well then, get at them!"
                 });
 
@@ -102,8 +103,8 @@ public class NPC_OldMan extends Entity {
                 gp.taskManager.addTask(new Task(
                     "Visit Food Store",
                     "Take your pet to the food store",
-                    26 * gp.tileSize,
-                    36 * gp.tileSize
+                    24 * gp.tileSize,
+                    40 * gp.tileSize
                 ));
 
 
@@ -141,8 +142,8 @@ public class NPC_OldMan extends Entity {
                 gp.taskManager.addTask(new Task(
                     "Vaccinate Your Pet",
                     "Take your pet to the veterinarian",
-                    21 * gp.tileSize,
-                    30 * gp.tileSize
+                    23 * gp.tileSize,
+                    25 * gp.tileSize
                 ));
 
             }
@@ -157,6 +158,12 @@ public class NPC_OldMan extends Entity {
 
         }
         else if (questStage == 3){
+             gp.ui.startDialogue(new String[]{
+                    "You have proven to be a great pet owner.",
+                    "Have fun with your pet!"
+                });
+        }
+        else if (questStage > 3){
              gp.ui.startDialogue(new String[]{
                     "You have proven to be a great pet owner.",
                     "Have fun with your pet!"

@@ -13,9 +13,6 @@ public class QuizManager {
 
     public int quizState = 0;
 
-    long lastQuizTime = 0;
-    long quizCooldown = 60000; // 60 seconds (for testing)
-
     public QuizManager(GamePanel gp){
         this.gp = gp;
     }
@@ -24,26 +21,11 @@ public class QuizManager {
         gp.ui.speaker = "Quizzard";
         if(gp.ui.typingMode) return;
 
-        long now = System.currentTimeMillis();
-
-        if(now - lastQuizTime < quizCooldown){
-
-            long remaining = (quizCooldown - (now - lastQuizTime)) / 1000;
-
-            gp.ui.startDialogue(new String[]{
-                "You've already taken a quiz.",
-                "Come back in " + remaining + " seconds."
-            });
-
-            return;
-        }
-
-        lastQuizTime = now;
-
         String[] questions = {
             "Why is exercise important for pets?",
             "Name two signs a pet may be sick.",
-            "Why should pets visit the vet?"
+            "Why should pets visit the vet?",
+            "Name one thing dogs shouldn't eat."
         };
 
         question = questions[new Random().nextInt(questions.length)];
@@ -51,7 +33,8 @@ public class QuizManager {
         quizState = 1; 
 
         gp.ui.startDialogue(new String[]{
-            "Pet Care Quiz!",
+            "Test your pet care knowledge!",
+            "If I like your answer, you'll get a reward!",
             question,
             "Type your answer."
         });
@@ -67,7 +50,11 @@ public class QuizManager {
 
         quizState = 3;
 
-        int score = ChatGPTGrader.grade(question, answer);
+        GradeResult result = ChatGPTGrader.grade(question, answer);
+
+        int score = result.score;
+        String reason = result.reason;
+        
 
         int reward = score / 2;
 
@@ -75,11 +62,21 @@ public class QuizManager {
 
         gp.wallet.addTransaction("Quiz Reward", reward);
 
-        gp.ui.startDialogue(new String[]{
-            "Hmm...",
-            "Your answer score: " + score + "/100",
-            "You earned $" + reward + "!"
-        });
+        if(reason != null){
+            gp.ui.startDialogue(new String[]{
+                "Hmm...",
+                "Your answer score: " + score + "/100",
+                reason,
+                "You earned $" + reward + "!"
+            });
+        }else{
+            gp.ui.startDialogue(new String[]{
+                "Hmm...",
+                "Your answer score: " + score + "/100",
+                reason,
+                "You earned $" + reward + "!"
+            });
+}
 
         quizState = 0;
     }

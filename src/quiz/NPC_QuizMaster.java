@@ -28,7 +28,7 @@ public class NPC_QuizMaster extends Entity {
         try{
 
             BufferedImage image =
-                ImageIO.read(getClass().getResource("/npc/oldman_left_1.png"));
+                ImageIO.read(getClass().getResource("/npc/quizzard.png"));
 
             UtilityTool uTool = new UtilityTool();
             down1 = uTool.scaleImage(image, gp.tileSize, gp.tileSize);

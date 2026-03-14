@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 
 public class ChatGPTGrader {
 
-    static String API_KEY = "YOUR_KEY_HERE";
-    public static int grade(String question, String answer){
+    static String API_KEY = "YOUR-API-KEY-HERE";
+    public static GradeResult grade(String question, String answer){
 
         try{
 
@@ -29,6 +29,10 @@ public class ChatGPTGrader {
             String prompt =
                 """
                 Grade this pet care answer from 0 to 100.
+
+                Expect a one line answer.
+
+                Return a very short one line reason (12 words or less).
 
                 Return EXACTLY in this format:
                 score:<number>
@@ -76,13 +80,17 @@ public class ChatGPTGrader {
             String content = extractContent(response);
             System.out.println("AI content:\n" + content.replace("\\n", "\n").trim());
 
-            return extractScore(content);
+            int score = extractScore(content);
+            String reason = extractReason(content);
+
+            return new GradeResult(score, reason);
 
         }catch(Exception e){
             System.out.println("API Failed! using fallback");
             System.out.println(e.getMessage());
 
-            return (int)(Math.random() * 60 + 30); // 30–90 fallback
+            int fallbackScore = (int)(Math.random() * 60 + 30);
+            return new GradeResult(fallbackScore, null);
         }
     }
 
@@ -96,6 +104,18 @@ public class ChatGPTGrader {
         }
 
         return 50;
+    }
+
+    static String extractReason(String text){
+
+        Pattern p = Pattern.compile("reason:\\s*(.*)");
+        Matcher m = p.matcher(text);
+
+        if(m.find()){
+            return m.group(1).trim();
+        }
+
+        return null;
     }
 
     static String extractContent(String json){

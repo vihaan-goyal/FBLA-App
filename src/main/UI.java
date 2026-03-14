@@ -510,7 +510,7 @@ public class UI {
         g2.setFont(smallFont);
         g2.drawString("1 = Wallet" , 20, 40);
         g2.drawString("2 = Inventory" , 20, 70);
-        g2.drawString("3 = Tasks" , 20, 100);
+        g2.drawString("3 = TODO List" , 20, 100);
         g2.drawString("4 = Pet Stats" , 20, 130);
         g2.drawString("---------------", 20, 150);
 
@@ -592,7 +592,7 @@ public class UI {
 		g2.setFont(menuFont);
 
 
-		g2.drawString("Tasks", x, y);
+		g2.drawString("TODO List", x, y);
 
 		y += gp.tileSize * 2;
 

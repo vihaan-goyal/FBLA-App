@@ -28,7 +28,7 @@ public class NPC_Merchant extends Entity {
 
     public void getImage() {
 
-        down1 = setup("merchant_down_1");
+        down1 = setup("foodMerchant");
     }
 
     public BufferedImage setup(String imageName) {

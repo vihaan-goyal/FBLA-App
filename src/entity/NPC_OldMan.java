@@ -26,14 +26,8 @@ public class NPC_OldMan extends Entity {
 
     public void getNPCImage() {
 
-        up1 = setup("oldman_up_1");
-        up2 = setup("oldman_up_2");
         down1 = setup("oldman_down_1");
-        down2 = setup("oldman_down_2");
-        left1 = setup("oldman_left_1");
-        left2 = setup("oldman_left_2");
-        right1 = setup("oldman_right_1");
-        right2 = setup("oldman_right_2");
+    
 
     }
 
@@ -142,8 +136,8 @@ public class NPC_OldMan extends Entity {
                 gp.taskManager.addTask(new Task(
                     "Vaccinate Your Pet",
                     "Take your pet to the veterinarian",
-                    23 * gp.tileSize,
-                    25 * gp.tileSize
+                    35 * gp.tileSize,
+                    45 * gp.tileSize
                 ));
 
             }

@@ -84,6 +84,24 @@ public class Player extends Entity {
         gp.petManager.currentPet.happinessDecay = 3; 
 
 
+        if(keyH.playPressed && gp.gameState == gp.PLAY_STATE) {
+
+            if(gp.inventoryManager.getItemCount("toy") > 0) {
+
+                gp.petManager.currentPet.happiness =
+                    Math.min(100, gp.petManager.currentPet.happiness + 10);
+
+                gp.ui.showMessage("You played with your pet!");
+
+            } else {
+
+                gp.ui.showMessage("You need a toy first!");
+
+            }
+            keyH.playPressed = false; // prevents spam
+        
+        }
+
         if(keyH.enterPressed){
 
             for(int i = 0; i < gp.npc.length; i++){
@@ -201,7 +219,7 @@ public class Player extends Entity {
 
     public void useMedicine() {
 
-        if(gp.inventoryManager.getItemCount("medicine") > 0) {
+        if(gp.inventoryManager.getItemCount("medicine") > 0 && gp.gameState == gp.PLAY_STATE) {
 
             if(gp.petManager.currentPet.sick) {
 

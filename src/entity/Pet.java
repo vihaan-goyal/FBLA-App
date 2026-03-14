@@ -154,6 +154,7 @@ public class Pet extends Entity {
     public void feed() {
         hunger += 20;
         happiness += 5;
+        energy += 10;
         clampStats();
         updateMood();
         double chance = Math.random();

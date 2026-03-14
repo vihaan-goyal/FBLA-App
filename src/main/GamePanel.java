@@ -236,15 +236,6 @@ public class GamePanel extends JPanel implements Runnable {
 
                     keyH.feedPressed = false;
                 }
-
-                // PLAY
-                if (keyH.playPressed && money >= 10) {
-                    pet.play();
-                    wallet.addTransaction("Pet Played", -10);
-                    money -= 10;
-                    totalSpent += 10;
-                    keyH.playPressed = false;
-                }
             }
 
             updateClock();

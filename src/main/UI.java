@@ -20,6 +20,7 @@ public class UI {
     Font titleFont;
     Font optionFont;
     Font smallFont;
+    Font popupFont;
     Font menuFont;
 
     BufferedImage hungerIcon;
@@ -42,6 +43,7 @@ public class UI {
 	// financial tracking
 	public int foodCosts = 0;
 	public int vetCosts = 0;
+    public int toyCosts = 0;
 
 	// dialogue system
 	public boolean dialogueOn = false;
@@ -59,6 +61,7 @@ public class UI {
         titleFont = new Font("Segoe UI", Font.BOLD, 80);
         menuFont = new Font("Segoe UI", Font.BOLD, 50);
         optionFont = new Font("Segoe UI", Font.PLAIN, 36);
+        popupFont = new Font("Segoe UI", Font.BOLD, 25);
         smallFont = new Font("Segoe UI", Font.PLAIN, 20);
 
         try {
@@ -360,7 +363,7 @@ public class UI {
 
         // message popup
         if(messageOn){
-
+            g2.setFont(popupFont);
             int x = gp.screenWidth/2 - g2.getFontMetrics().stringWidth(message)/2;
 
             g2.drawString(message, x, 120);
@@ -399,13 +402,16 @@ public class UI {
         y += gp.tileSize * 2;
 
         int foodCount = gp.inventoryManager.getItemCount("food");
-        g2.drawString("Bags of Pet Food: " + foodCount, x, y);
+        g2.drawString("Pet Food: " + foodCount, x, y);
 
         int medicineCount = gp.inventoryManager.getItemCount("medicine");
 
         g2.drawString("Medicine: " + medicineCount, x, y + gp.tileSize);
 
-        y += gp.tileSize * 4;
+        int toyCount = gp.inventoryManager.getItemCount("toy");
+        g2.drawString("Toys: " + toyCount, x, y + gp.tileSize*2);
+
+        y += gp.tileSize * 5;
 
         g2.drawString("Press 2 to close", x, y);
     }
@@ -500,6 +506,10 @@ public class UI {
 
 		y += gp.tileSize;
 		g2.drawString("Vet Costs: $" + vetCosts, x, y);
+
+        y += gp.tileSize;
+		g2.drawString("Toy Costs: $" + toyCosts, x, y);
+
 
 		y += gp.tileSize * 2;
 		g2.drawString("Press 1 to close", x, y);

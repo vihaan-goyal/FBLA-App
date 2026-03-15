@@ -53,6 +53,7 @@ public class NPC_OldMan extends Entity {
 
     @Override
     public void interact(){
+        System.out.println(questStage);
         gp.ui.speaker = "Wiseman";
 
         // Stage 0: give quest

@@ -25,7 +25,6 @@ public class Pet extends Entity {
     public String mood = "Happy";
 
     public boolean isAlive = true;
-    public boolean isSick = false;
 
     // stat decay rates
     public int hungerDecay = 2;
@@ -54,6 +53,8 @@ public class Pet extends Entity {
     public int restTimer = 0;
 
     public boolean isVaccinated = false;
+    public boolean hasBeenSick = false;
+    int demoSicknessTimer = 0;
 
 
 
@@ -121,8 +122,11 @@ public class Pet extends Entity {
             return;
         }
 
+        if(hunger < 15 && energy < 15 && happiness < 15){
+            mood = "Miserable";
+        }
         // Double critical states second
-        if(hunger < 25 && happiness < 25) {
+        else if(hunger < 25 && happiness < 25) {
             mood = "Hangry";
         }
         else if(hunger < 25 && energy < 25) {
@@ -142,9 +146,7 @@ public class Pet extends Entity {
         else if(happiness < 40) {
             mood = "Sad";
         }
-        else if(hunger < 15 && energy < 15 && happiness < 15){
-            mood = "Miserable";
-        }
+
 
         // Normal
         else {
@@ -164,6 +166,7 @@ public class Pet extends Entity {
 
         if(chance < 0.10 && ((NPC_OldMan) gp.npc[0]).questStage >= 1) {  
             sick = true;
+            hasBeenSick = true;
             gp.ui.showMessage(name.toUpperCase() + " got sick from the food!");
         }
         else if(mood.equals("Happy")){
@@ -227,18 +230,33 @@ public class Pet extends Entity {
 
         if(gameTime > 2400) { //change to 2400 for 20 seconds
 
-            sicknessTimer++;
-
             if(sicknessTimer > 1200 && ((NPC_OldMan) gp.npc[0]).questStage >= 1) {
                 sicknessTimer = 0;
 
-                if(!sick && Math.random() < 0.10 && !isVaccinated) {
+                if(!sick && Math.random() < 0.10 && !isVaccinated && ((NPC_OldMan) gp.npc[0]).questStage >= 1) {
                     sick = true;
-
+                    hasBeenSick = true;
                     gp.ui.showMessage("Oh no, your pet caught an illness!");
                 }
             }
         }
+
+        // Guarantee sickness for demo after second quest
+        if(gp.npc[0] instanceof NPC_OldMan){
+
+            NPC_OldMan oldman = (NPC_OldMan) gp.npc[0];
+
+            if(oldman.questStage > 2 && !hasBeenSick && !isVaccinated){
+                demoSicknessTimer++;
+
+                if(demoSicknessTimer > 600){ // ~10 seconds at 60 FPS
+                    sick = true;
+                    hasBeenSick = true;
+                    demoSicknessTimer = 0;
+                    gp.ui.showMessage("Oh no, your pet caught an illness!");
+                }
+            }
+}
 
         int dx = gp.player.worldX - worldX;
         int dy = gp.player.worldY - worldY;
@@ -375,7 +393,7 @@ public class Pet extends Entity {
         }
 
         // draw pet sprite
-        g2.drawImage(image, screenX, screenY, null);
+        //g2.drawImage(image, screenX, screenY, null);
 
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 

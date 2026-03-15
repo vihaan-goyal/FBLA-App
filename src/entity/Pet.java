@@ -102,8 +102,6 @@ public class Pet extends Entity {
         }
     }
 
-    
-
     public void clampStats() {
 
         if(hunger > 100) hunger = 100;

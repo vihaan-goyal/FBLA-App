@@ -249,7 +249,7 @@ public class Pet extends Entity {
             if(oldman.questStage > 2 && !hasBeenSick && !isVaccinated){
                 demoSicknessTimer++;
 
-                if(demoSicknessTimer > 600){ // ~10 seconds at 60 FPS
+                if(demoSicknessTimer >= 600){ // ~10 seconds at 60 FPS
                     sick = true;
                     hasBeenSick = true;
                     demoSicknessTimer = 0;

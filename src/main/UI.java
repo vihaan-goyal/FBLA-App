@@ -62,7 +62,7 @@ public class UI {
     public int mouseX;
     public int mouseY;
 
-    //transactino scroll
+    //transaction scroll
     int transactionScroll = 0;
     int maxVisibleTransactions = 12;
 
@@ -645,12 +645,11 @@ public class UI {
 	public void drawWallet(Graphics2D g2){
 
 		// dark background
-		g2.setColor(new Color(232,169,97
-		));
+		g2.setColor(new Color(232,169,97));
 		g2.fillRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
 		//border
 		g2.setColor(new Color(115,83 ,47));
-		g2.setStroke(new java.awt.BasicStroke(5));
+		g2.setStroke(new BasicStroke(5));
 		g2.drawRect(gp.screenWidth/4-5, gp.screenHeight/4+5, gp.screenWidth/2, gp.screenHeight/2);
 
 		g2.setFont(smallFont);

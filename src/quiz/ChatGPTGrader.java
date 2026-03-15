@@ -9,12 +9,12 @@ import java.util.regex.Pattern;
 
 public class ChatGPTGrader {
 
-    static String API_KEY = "YOUR-API-KEY-HERE";
+    private static final String API_KEY = "YOUR-API-KEY-HERE";
     public static GradeResult grade(String question, String answer){
 
         try{
 
-            URL url = new URL("https://api.openai.com/v1/chat/completions");
+            final URL url = new URL("https://api.openai.com/v1/chat/completions");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -88,8 +88,9 @@ public class ChatGPTGrader {
         }catch(Exception e){
             System.out.println("API Failed! using fallback");
             System.out.println(e.getMessage());
-
             int fallbackScore = (int)(Math.random() * 60 + 30);
+
+
             return new GradeResult(fallbackScore, null);
         }
     }
@@ -102,8 +103,9 @@ public class ChatGPTGrader {
         if(m.find()){
             return Integer.parseInt(m.group(1));
         }
+        int fallbackScore = (int)(Math.random() * 60 + 30);
 
-        return 50;
+        return fallbackScore;
     }
 
     static String extractReason(String text){

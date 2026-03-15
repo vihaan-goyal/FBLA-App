@@ -232,7 +232,7 @@ public class Pet extends Entity {
             if(sicknessTimer > 1200 && ((NPC_OldMan) gp.npc[0]).questStage >= 1) {
                 sicknessTimer = 0;
 
-                if(!sick && Math.random() < 0.10 && isVaccinated) {
+                if(!sick && Math.random() < 0.10 && !isVaccinated) {
                     sick = true;
 
                     gp.ui.showMessage("Oh no, your pet caught an illness!");

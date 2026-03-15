@@ -1,8 +1,8 @@
-# PetLife
+# 🐾 PetLife
 
-## Overview
+## 📖 Overview
 
-PetLife is a Java-based interactive program that simulates caring for a digital pet while managing the financial responsibilities of pet ownership.
+**PetLife** is a Java-based interactive program that simulates caring for a digital pet while managing the financial responsibilities of pet ownership.
 
 The game combines a **2D exploration environment** with a **virtual pet care system** where players complete tasks, earn money, purchase supplies, and improve their pet’s wellbeing.
 
@@ -12,80 +12,91 @@ The program was built using **Java and Java Swing**.
 
 ---
 
-# How to Run the Program
+# ▶️ How to Run the Program
 
-## Requirements
+## 🧰 Requirements
 
-- Java JDK 8 or higher
-- A Java IDE (VS Code, IntelliJ, or Eclipse recommended)
+- Java **JDK 8 or higher**
+- A Java IDE  
+  - VS Code  
+  - IntelliJ  
+  - Eclipse  
 
 ---
 
-## Running the Program
+## 🚀 Running the Program
 
 1. Download or clone the repository.
 2. Open the project in your Java IDE.
-3. Navigate to: Main.java
+3. Navigate to `Main.java`.
 4. Run the program.
 
 The game window will launch and the player can begin interacting with the world.
 
-The program begins execution from the `main()` method in the `Main` class. :contentReference[oaicite:0]{index=0}
+The program begins execution from the `main()` method in the `Main` class.
 
 ---
 
-# Controls
+# 🎮 Controls
 
-| Key |    Action    |
-|---- |--------------|
-|  W  |    Move Up   |
-|  A  |   Move Left  |
-|  S  |   Move Down  |
-|  D  |  Move Right  |
-|-----|--------------|
-|  F  |   Feed Pet   |
-|  M  | Medicate Pet |
-|  P  | Play with Pet|
-|-----|--------------|
-|  1  |    Wallet    |
-|  2  |   Inventory  |
-|  3  |   TODO List  |
-|  4  |   Pet Stats  |
+| Key | Action |
+|----|------|
+| **W** | Move Up |
+| **A** | Move Left |
+| **S** | Move Down |
+| **D** | Move Right |
 
-Keyboard input is processed through the program’s input handler which listens for key events. :contentReference[oaicite:1]{index=1}
+### 🐶 Pet Care Actions
+
+| Key | Action |
+|----|------|
+| **F** | Feed Pet |
+| **M** | Medicate Pet |
+| **P** | Play with Pet |
+
+### 📊 Game Interface
+
+| Key | Menu |
+|----|------|
+| **1** | Wallet |
+| **2** | Inventory |
+| **3** | TODO List |
+| **4** | Pet Stats |
+
+Keyboard input is processed through the program’s input handler which listens for key events.
 
 ---
 
-# Game Features
+# ⭐ Game Features
 
-## Virtual Pet System
+## 🐕 Virtual Pet System
 
 Players create and care for a virtual pet such as:
 
-- Dog
-- Cat
-- Koala
+- 🐶 Dog  
+- 🐱 Cat  
+- 🐨 Koala  
 
-Each pet has attributes like which responds to how well it is treated.
+Each pet has attributes that respond to how well it is treated.
 
-The pet system is managed through the **PetManager**, which tracks and creates pets. :contentReference[oaicite:2]{index=2}
+The pet system is managed through the **PetManager**, which tracks and creates pets.
 
 ---
 
-## Tasks and Rewards
+## ✅ Tasks and Rewards
 
 Players complete tasks such as visiting locations in the world.
 
 Completing tasks rewards the player with:
 
-- Money
-- Increased pet happiness
+- 💰 Money
+- 😊 Increased pet happiness
 
-Tasks are managed using the **TaskManager** and **Task** classes. 
+Tasks are managed using the **TaskManager** and **Task** classes.
 
 ---
 
-## Financial Responsibility System
+## 💵 Financial Responsibility System
 
 Players must manage money to care for their pet.
 
@@ -94,75 +105,75 @@ Examples include:
 - Paying for supplies and provisions
 - Completing tasks to earn rewards
 
-This system teaches the **financial responsibility of pet ownership**.
+This system demonstrates the **financial responsibility of pet ownership**.
 
 ---
 
-## NPC Interactions
+## 🧑‍🤝‍🧑 NPC Interactions
 
 The game includes several interactive NPC characters:
 
-- **Wiseman NPC** – gives quests and rewards
-- **Merchant NPC** – multiple, sell food, medicine, and toys
-- **Quiz Master NPC** – provides educational quizzes and grades using AI 
+- 🧙 **Wiseman NPC** – gives quests and rewards  
+- 🛒 **Merchant NPCs** – sell food, medicine, and toys  
+- 🧠 **Quiz Master NPC** – provides educational quizzes graded using AI  
 
 These interactions guide players through the gameplay and encourage responsible pet care.
 
 ---
 
-## Exploration-Based Gameplay
+## 🌍 Exploration-Based Gameplay
 
 The game uses a **tile-based world** where the player can explore and interact with objects such as:
 
-- Chests
-- Pet Bed
-- Decorational Objects
+- Treasure chests
+- Pet bed
+- Decorative objects
 
-Collision detection prevents players from moving through walls or obstacles. :contentReference[oaicite:4]{index=4}
+Collision detection prevents players from moving through walls or obstacles.
 
 ---
 
-# Program Structure
+# 🏗 Program Structure
 
 The program is organized into several packages to maintain a modular code structure.
 
-## main
-Handles the game loop, UI, sound system, and window setup
+### 📂 `main`
+Handles the **game loop, UI, sound system, and window setup**
 
-## entity 
-Contains player and NPC classes
+### 📂 `entity`
+Contains **player and NPC classes**
 
-## object
-Contains interactable world objects (keys, doors, boots, chests)
+### 📂 `object`
+Contains interactable world objects  
+(keys, doors, boots, chests)
 
-## tile
-Handles map loading and rendering
+### 📂 `tile`
+Handles **map loading and rendering**
 
-## quest
-Handles tasks and objectives
+### 📂 `quest`
+Handles **tasks and objectives**
 
-## pet
-Manages the virtual pet system
-
+### 📂 `pet`
+Manages the **virtual pet system**
 
 This modular structure improves **code readability, maintainability, and organization**.
 
 ---
 
-# Data Structures and Logic
+# 🧠 Data Structures and Logic
 
 The program uses several data structures to manage game information.
 
 Examples include:
 
-- **Arrays** for storing game objects and world building
+- **Arrays** for storing game objects and world data
 - **ArrayLists** for tracking tasks
 - **Classes and objects** for modular design
 - **Conditional logic** for gameplay events
 
 ---
 
-# Input Validation
+# ✔️ Input Validation
 
 The program includes input validation to maintain correct gameplay behavior.
 
@@ -174,34 +185,32 @@ Examples include:
 
 ---
 
-# Libraries and Technologies Used
+# 🛠 Libraries and Technologies Used
 
-- Java
-- Java Swing (GUI and rendering)
-- Java AWT (keyboard input)
-  
+- **Java**
+- **Java Swing** – GUI and rendering
+- **Java AWT** – keyboard input
+
 No external third-party libraries were required.
 
 ---
 
-# External Resources and Credits
+# 📚 External Resources and Credits
 
-Graphics and sound are used for educational purposes.
+Graphics and sound assets are used for **educational purposes**.
 
-Programming concepts were inspired by common Java game development tutorials.
+Programming concepts were inspired by common **Java game development tutorials**.
 
-All original game logic and systems were implemented by Vihaan Goyal, Logan Russon, and Lev Rubin.
+All original game logic and systems were implemented by the development team.
 
 ---
 
-# Authors
+# 👨‍💻 Authors
 
-Developed by:
+Developed by the **FBLA Introduction to Programming Team**
 
-**FBLA Introduction to Programming Team**  
+- **Vihaan Goyal**
+- **Logan Russon**
+- **Lev Rubin**
 
-*Vihaan Goyal**
-**Logan Russo**
-**Lev Rubin**
-
-Westhill High School
+📍 Westhill High School

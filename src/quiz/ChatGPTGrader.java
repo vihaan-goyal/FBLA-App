@@ -26,6 +26,9 @@ public class ChatGPTGrader {
 
             conn.setDoOutput(true);
 
+            // JSON request with the user's answer
+            // API returns a score and feedback
+
             String prompt =
                 """
                 Grade this pet care answer from 0 to 100.

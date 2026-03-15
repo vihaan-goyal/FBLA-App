@@ -53,7 +53,6 @@ public class NPC_OldMan extends Entity {
 
     @Override
     public void interact(){
-        System.out.println(questStage);
         gp.ui.speaker = "Wiseman";
 
         // Stage 0: give quest
@@ -156,8 +155,9 @@ public class NPC_OldMan extends Entity {
                     15 * gp.tileSize
                 ));
 
-            }
-            else{
+        } 
+        else
+            {
 
                 gp.ui.startDialogue(new String[]{
                     "You still have tasks left.",

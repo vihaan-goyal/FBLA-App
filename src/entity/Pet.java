@@ -79,7 +79,7 @@ public class Pet extends Entity {
     public void setDefaultValues() {
         worldX = gp.player.worldX - gp.tileSize;
         worldY = gp.player.worldY;
-        speed = 3;
+        speed = 4;
         direction = "down";
     }
 
@@ -175,7 +175,7 @@ public class Pet extends Entity {
     }
 
     public void rest() {
-        energy += 20;
+        energy = 100;
         clampStats();
         updateMood();
     }
@@ -241,7 +241,7 @@ public class Pet extends Entity {
             if(oldman.questStage > 2 && !hasBeenSick && !isVaccinated){
                 demoSicknessTimer++;
 
-                if(demoSicknessTimer >= 900){
+                if(demoSicknessTimer >= 720){
                     System.out.println("sickness caught"); // ~10 seconds at 60 FPS
                     sick = true;
                     hasBeenSick = true;
@@ -271,11 +271,6 @@ public class Pet extends Entity {
             secondaryDir = (dx > 0) ? "right" : "left";
         }
 
-        if(sick) {
-            speed = 1;
-        } else {
-            speed = 3; // normal speed
-        }
         if(resting){
 
             restTimer--;
@@ -288,7 +283,7 @@ public class Pet extends Entity {
                 worldX = returnX;
                 worldY = returnY;
 
-                energy += 30;
+                energy = 100;
             }
 
             return; // stop normal movement while resting

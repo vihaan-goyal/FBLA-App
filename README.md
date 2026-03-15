@@ -219,7 +219,7 @@ All original game logic and systems were implemented by the development team.
 Developed by the **FBLA Introduction to Programming Team**
 
 - **Vihaan Goyal**
-- **Logan Russon**
+- **Logan Russo**
 - **Lev Rubin**
 
 📍 Westhill High School

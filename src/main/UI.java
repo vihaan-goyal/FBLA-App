@@ -480,12 +480,16 @@ public class UI {
         int boxY = gp.screenHeight * 3 / 4;
         String nameText = "Name your pet:";
         int nameX = gp.screenWidth/2 - g2.getFontMetrics().stringWidth(nameText)/2;
+        
 
         g2.drawString(nameText, nameX, boxY-20);
 
         g2.drawRect(boxX, boxY, boxWidth, boxHeight);
 
         g2.drawString(gp.petNameInput + "_", boxX + 10, boxY+25);
+
+        g2.drawString("(12 characters max)", gp.screenWidth/2 - g2.getFontMetrics().stringWidth("(12 characters max)")/2, gp.screenHeight * 5 / 6 - 10);
+
     }
 
     // ---------------- BUTTON DRAWER ----------------

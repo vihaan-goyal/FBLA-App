@@ -12,7 +12,7 @@ public class Cat extends Pet {
         super(gp);
 
         hungerDecay = 1;
-        happinessDecay = 3;
+        happinessDecay = 2;
         energyDecay = 1;
     }
 

@@ -164,7 +164,7 @@ public class Pet extends Entity {
         updateMood();
         double chance = Math.random();
 
-        if(chance < 0.10 && ((NPC_OldMan) gp.npc[0]).questStage >= 1) {  
+        if(chance < 0.10 && ((NPC_OldMan) gp.npc[0]).questStage > 1) {  
             sick = true;
             hasBeenSick = true;
             gp.ui.showMessage(name.toUpperCase() + " got sick from the food!");
@@ -230,7 +230,7 @@ public class Pet extends Entity {
 
         if(gameTime > 2400) { //change to 2400 for 20 seconds
 
-            if(sicknessTimer > 1200 && ((NPC_OldMan) gp.npc[0]).questStage >= 1) {
+            if(sicknessTimer > 1200 && ((NPC_OldMan) gp.npc[0]).questStage > 1) {
                 sicknessTimer = 0;
 
                 if(!sick && Math.random() < 0.10 && !isVaccinated && ((NPC_OldMan) gp.npc[0]).questStage >= 1) {
@@ -249,7 +249,7 @@ public class Pet extends Entity {
             if(oldman.questStage > 2 && !hasBeenSick && !isVaccinated){
                 demoSicknessTimer++;
 
-                if(demoSicknessTimer >= 600){ // ~10 seconds at 60 FPS
+                if(demoSicknessTimer >= 900){ // ~10 seconds at 60 FPS
                     sick = true;
                     hasBeenSick = true;
                     demoSicknessTimer = 0;

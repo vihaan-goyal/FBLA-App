@@ -9,7 +9,7 @@ public class Koala extends Pet {
 
         hungerDecay = 1;
         happinessDecay = 1;
-        energyDecay = 3;
+        energyDecay = 2;
     }
 
     @Override

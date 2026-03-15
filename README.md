@@ -206,7 +206,7 @@ No external third-party libraries were required.
 
 # 📚 External Resources and Credits
 
-Graphics and sound assets are used for **educational purposes**.
+Graphics are used for **educational purposes**.
 
 Programming concepts were inspired by common **Java game development tutorials**.
 

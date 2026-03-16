@@ -162,7 +162,7 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener {
         gameThread.start();
     }
 
-   @Override
+    @Override
 	public void run() {
 
 		double drawInterval = 1000000000.0 / fps;

@@ -164,7 +164,7 @@ Handles **tasks and objectives**
 Manages the **virtual pet system**
 
 ### 📂 `quiz`
-Manages the **specific Quizmaster using ChatGPT API to grade responses**
+Manages the **specific Quizmaster using ChatGPT API to grade responses** (Need API Key for API to grade responses).
 
 This modular structure improves **code readability, maintainability, and organization**.
 

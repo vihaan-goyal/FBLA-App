@@ -31,10 +31,6 @@ public class TaskManager {
 
                     gp.ui.showMessage("Task Completed: " + t.name);
 
-                    if(gp.petManager.currentPet != null){
-                        gp.petManager.currentPet.happiness += 20;
-                    }
-
                 }
 
             }

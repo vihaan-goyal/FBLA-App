@@ -15,7 +15,7 @@ public class Dog extends Pet {
     @Override
     public void play() {
 
-        happiness += 25;
+        happiness += 10;
         energy -= 10;
         hunger -= 5;
 

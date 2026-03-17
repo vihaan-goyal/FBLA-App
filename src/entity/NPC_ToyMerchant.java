@@ -72,10 +72,6 @@ public class NPC_ToyMerchant extends Entity {
 
             gp.inventoryManager.addItem("toy", 1);
 
-            if(gp.petManager.currentPet != null) {
-                gp.petManager.currentPet.happiness += 25;
-            }
-
             gp.ui.startDialogue(new String[]{
                 "Here you go, one fun toy!"
             });

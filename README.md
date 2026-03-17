@@ -224,3 +224,15 @@ Developed by the **FBLA Introduction to Programming Team**
 - **Lev Rubin**
 
 📍 Westhill High School
+---
+
+# 📖 Works Cited
+
+Resources used to aid in the development of our presentation and application
+
+- Slidesgo – Presentation template and design resources
+- Oracle Java Documentation – Java language reference and API documentation
+- W3Schools – General programming syntax and reference guides
+- OpenAI ChatGPT API Documentation – Used to implement automated grading of quiz responses
+- Stack Overflow – Troubleshooting programming errors and debugging techniques
+- Java Swing Documentation – Used for building the graphical user interface

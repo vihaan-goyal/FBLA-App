@@ -58,9 +58,7 @@ public class QuizManager {
 
         int reward = score / 2;
 
-        gp.money += reward;
-
-        gp.wallet.addTransaction("Quiz Reward", reward);
+        gp.wallet.earn("Quiz Reward", reward);
 
         if(reason != null){
             gp.ui.startDialogue(new String[]{

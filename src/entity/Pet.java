@@ -1,17 +1,12 @@
 package entity;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.imageio.ImageIO;
 
 import main.GamePanel;
-import main.UtilityTool;
 
 public class Pet extends Entity {
 
@@ -352,32 +347,14 @@ public class Pet extends Entity {
     // ---------- GRAPHICS ----------
 
     public void getPetImage() {
-
-        up1 = setup(petType + "_up_1");
-        up2 = setup(petType + "_up_2");
-
-        down1 = setup(petType + "_down_1");
-        down2 = setup(petType + "_down_2");
-
-        left1 = setup(petType + "_left_1");
-        left2 = setup(petType + "_left_2");
-
-        right1 = setup(petType + "_right_1");
-        right2 = setup(petType + "_right_2");
-    }
-
-    public BufferedImage setup(String imageName) {
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-
-        try {
-            image = ImageIO.read(getClass().getResource("/pet/" + imageName + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-
-        return image;
+        up1    = loadSprite("/pet/" + petType + "_up_1.png",    gp.tileSize, gp.tileSize);
+        up2    = loadSprite("/pet/" + petType + "_up_2.png",    gp.tileSize, gp.tileSize);
+        down1  = loadSprite("/pet/" + petType + "_down_1.png",  gp.tileSize, gp.tileSize);
+        down2  = loadSprite("/pet/" + petType + "_down_2.png",  gp.tileSize, gp.tileSize);
+        left1  = loadSprite("/pet/" + petType + "_left_1.png",  gp.tileSize, gp.tileSize);
+        left2  = loadSprite("/pet/" + petType + "_left_2.png",  gp.tileSize, gp.tileSize);
+        right1 = loadSprite("/pet/" + petType + "_right_1.png", gp.tileSize, gp.tileSize);
+        right2 = loadSprite("/pet/" + petType + "_right_2.png", gp.tileSize, gp.tileSize);
     }
 
     public void draw(Graphics2D g2) {

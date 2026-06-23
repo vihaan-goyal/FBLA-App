@@ -3,13 +3,9 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
 
 
 public class Player extends Entity {
@@ -54,29 +50,14 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
-        up1 = setup("boy_up_1");
-        up2 = setup("boy_up_2");
-        down1 = setup("boy_down_1");
-        down2 = setup("boy_down_2");
-        left1 = setup("boy_left_1");
-        left2 = setup("boy_left_2");
-        right1 = setup("boy_right_1");
-        right2 = setup("boy_right_2");
-    }
-
-    public BufferedImage setup(String imageName) {
-
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-
-        try {
-            image = ImageIO.read(getClass().getResource("/player/" + imageName + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return image;
+        up1    = loadSprite("/player/boy_up_1.png",    gp.tileSize, gp.tileSize);
+        up2    = loadSprite("/player/boy_up_2.png",    gp.tileSize, gp.tileSize);
+        down1  = loadSprite("/player/boy_down_1.png",  gp.tileSize, gp.tileSize);
+        down2  = loadSprite("/player/boy_down_2.png",  gp.tileSize, gp.tileSize);
+        left1  = loadSprite("/player/boy_left_1.png",  gp.tileSize, gp.tileSize);
+        left2  = loadSprite("/player/boy_left_2.png",  gp.tileSize, gp.tileSize);
+        right1 = loadSprite("/player/boy_right_1.png", gp.tileSize, gp.tileSize);
+        right2 = loadSprite("/player/boy_right_2.png", gp.tileSize, gp.tileSize);
     }
 
     public void Update() {
@@ -249,9 +230,8 @@ public class Player extends Entity {
 
             if(objectName.equals("Chest")) {
 
-                int mon = (int)(Math.random() * 10) + 5; // Random money between 5 and 15
-                gp.wallet.addTransaction("Chest Money", mon);
-                gp.money += mon;
+                int mon = (int)(Math.random() * 10) + 5;
+                gp.wallet.earn("Chest Money", mon);
                 gp.ui.showMessage("+$" + mon + " from chest!");
                 gp.obj[i] = null;
             }

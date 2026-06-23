@@ -72,9 +72,6 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener {
     public Player player = new Player(this, keyH);
     public Pet pet = null;
 
-    // MONEY SYSTEM
-    public int money = 0;
-    public int totalSpent = 0;
     public boolean showWallet = false;
 
     //TASKS

@@ -1,62 +1,17 @@
 package quiz;
 
-import entity.Entity;
+import entity.NPC;
 import main.GamePanel;
-import main.UtilityTool;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+public class NPC_QuizMaster extends NPC {
 
-import javax.imageio.ImageIO;
-
-import java.awt.Color;
-import java.awt.Font; 
-
-public class NPC_QuizMaster extends Entity {
-
-    GamePanel gp;
-
-    public NPC_QuizMaster(GamePanel gp){
-        this.gp = gp;
-
-        direction = "down";
-        speed = 0;
-
-        getImage();
-    }
-
-    public void getImage(){
-
-        try{
-
-            BufferedImage image =
-                ImageIO.read(getClass().getResource("/npc/quizzard.png"));
-
-            UtilityTool uTool = new UtilityTool();
-            down1 = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+    public NPC_QuizMaster(GamePanel gp) {
+        super(gp, "Quizzard");
+        down1 = loadSprite("/npc/quizzard.png", gp.tileSize, gp.tileSize);
     }
 
     @Override
-    public void interact(){
+    public void interact() {
         gp.quizManager.startQuiz();
-    }
-
-    public void draw(Graphics2D g2, GamePanel gp){
-
-        BufferedImage image = down1;
-
-        int screenX = worldX - gp.player.worldX + gp.player.screenX;
-        int screenY = worldY - gp.player.worldY + gp.player.screenY;
-
-        g2.drawImage(image, screenX, screenY, null);
-
-        g2.setFont(new Font("Arial", Font.BOLD, 14));
-        g2.setColor(Color.WHITE);
-        g2.drawString("Quizzard", screenX - 10, screenY - 10);
     }
 }

@@ -46,8 +46,7 @@ public class UI {
     public String  message   = "";
     int messageCounter = 0;
 
-    // financial tracking
-    public int foodCosts = 0, vetCosts = 0, toyCosts = 0;
+    // financial totals live in gp.wallet (foodCosts, vetCosts, toyCosts, balance, totalSpent)
 
     // dialogue system
     public boolean  dialogueOn    = false;
@@ -273,16 +272,16 @@ public class UI {
         int divY = startY + gap * 3 - 4;
         drawDivider(g2, px, divY, pw);
 
-        int statusY = divY + 28;
+        int statusY = divY + 38;
         g2.setFont(optionFont);
         g2.setColor(C_WHITE);
         g2.drawString("Status:", px, statusY);
         if (pet.sick) {
             g2.setColor(new Color(255, 85, 85));
-            g2.drawString("Sick", px + 136, statusY);
+            g2.drawString("Sick", px + 120, statusY);
         } else {
             g2.setColor(new Color(100, 230, 110));
-            g2.drawString("Healthy", px + 136, statusY);
+            g2.drawString("Healthy", px + 120, statusY);
         }
 
         g2.setFont(smallFont);
@@ -593,7 +592,7 @@ public class UI {
         // large balance
         g2.setFont(new Font("Georgia", Font.BOLD, 38));
         g2.setColor(C_WHITE);
-        g2.drawString("$" + gp.money, lx, y);
+        g2.drawString("$" + gp.wallet.balance, lx, y);
 
         g2.setFont(smallFont);
         g2.setColor(C_DIM);
@@ -605,10 +604,10 @@ public class UI {
 
         g2.setFont(smallFont);
         g2.setColor(C_WHITE);
-        drawWalletRow(g2, "Total Spent", "$" + gp.totalSpent, lx, y); y += 30;
-        drawWalletRow(g2, "Food",        "$" + foodCosts,     lx, y); y += 30;
-        drawWalletRow(g2, "Vet",         "$" + vetCosts,      lx, y); y += 30;
-        drawWalletRow(g2, "Toys",        "$" + toyCosts,      lx, y); y += 15;
+        drawWalletRow(g2, "Total Spent", "$" + gp.wallet.totalSpent, lx, y); y += 30;
+        drawWalletRow(g2, "Food",        "$" + gp.wallet.foodCosts,  lx, y); y += 30;
+        drawWalletRow(g2, "Vet",         "$" + gp.wallet.vetCosts,   lx, y); y += 30;
+        drawWalletRow(g2, "Toys",        "$" + gp.wallet.toyCosts,   lx, y); y += 52;
 
         drawDivider(g2, lx, y, pw / 2 - 20);
 

@@ -38,6 +38,8 @@ public class Pet extends Entity {
     String lastDirection = "down";
 
     public boolean sick = false;
+    public boolean annoyed = false;
+    int annoyedTimer = 0;
 
     int sicknessTimer = 0;
 
@@ -114,6 +116,16 @@ public class Pet extends Entity {
     }
 
    protected void updateMood() {
+        // annoyed timer
+        if(annoyed) {
+            annoyedTimer--;
+            mood = "Annoyed";
+            if(annoyedTimer <= 0) {
+                annoyed = false;
+            }
+            return;
+        }
+
         // update sickness first
         if(sick) {
             mood = "Sick";
@@ -183,7 +195,7 @@ public class Pet extends Entity {
         if(mood.equals("Happy")) {
             speed = 4;
         }
-        else if(mood.equals("Hungry") || mood.equals("Tired") || mood.equals("Sad")) {
+        else if(mood.equals("Hungry") || mood.equals("Tired") || mood.equals("Sad") || mood.equals("Annoyed")) {
             speed = 3;
         }
         else if(mood.equals("Hangry") || mood.equals("Lethargic") || mood.equals("Sluggish")) {
@@ -454,6 +466,9 @@ if(mood != null){
         }
         else if (mood.equals("Miserable")){
             g2.setColor(new Color(100, 100, 100)); // gray
+        }
+        else if (mood.equals("Annoyed")){
+            g2.setColor(new Color(255, 120, 0)); // orange
         }
         else{
             g2.setColor(Color.white);

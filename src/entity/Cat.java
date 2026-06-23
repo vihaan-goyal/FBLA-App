@@ -20,7 +20,9 @@ public class Cat extends Pet {
     public void play() {
 
         if(rand.nextInt(100) < 30) {
-            mood = "Annoyed";
+            annoyed = true;
+            annoyedTimer = 180;
+            gp.ui.showMessage(name + " doesn't want to play right now!");
             return;
         }
 

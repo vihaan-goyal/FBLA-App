@@ -7,7 +7,7 @@ public class Dog extends Pet {
     public Dog(GamePanel gp) {
         super(gp);
 
-        hungerDecay = 2;
+        hungerDecay = 4;
         happinessDecay = 3;
         energyDecay = 3;
     }

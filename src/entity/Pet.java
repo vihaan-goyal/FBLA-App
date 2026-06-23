@@ -27,9 +27,9 @@ public class Pet extends Entity {
     public boolean isAlive = true;
 
     // stat decay rates
-    public int hungerDecay = 2;
-    public int happinessDecay = 2;
-    public int energyDecay = 2;
+    public int hungerDecay = 3;
+    public int happinessDecay = 3;
+    public int energyDecay = 3;
 
     int statTimer = 0;
 

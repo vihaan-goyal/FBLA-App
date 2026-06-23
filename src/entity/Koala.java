@@ -7,9 +7,9 @@ public class Koala extends Pet {
     public Koala(GamePanel gp) {
         super(gp);
 
-        hungerDecay = 1;
-        happinessDecay = 1;
-        energyDecay = 2;
+        hungerDecay = 2;
+        happinessDecay = 2;
+        energyDecay = 3;
     }
 
     @Override

@@ -300,8 +300,7 @@ public class UI {
         BufferedImage grass = null;
         try { grass = ImageIO.read(getClass().getResource("/tiles/grass.png")); }
         catch (IOException e) { e.printStackTrace(); }
-        UtilityTool uTool = new UtilityTool();
-        grass = uTool.scaleImage(grass, gp.tileSize, gp.tileSize);
+        grass = UtilityTool.scaleImage(grass, gp.tileSize, gp.tileSize);
         for (int x = 0; x < gp.screenWidth;  x += gp.tileSize)
             for (int y = 0; y < gp.screenHeight; y += gp.tileSize)
                 g2.drawImage(grass, x, y, null);
@@ -332,9 +331,9 @@ public class UI {
             catImg   = ImageIO.read(getClass().getResource("/pet/cat_down_1.png"));
             koalaImg = ImageIO.read(getClass().getResource("/pet/koala_down_1.png"));
         } catch (IOException e) { e.printStackTrace(); }
-        dogImg   = uTool.scaleImage(dogImg,   300, 300);
-        catImg   = uTool.scaleImage(catImg,   300, 300);
-        koalaImg = uTool.scaleImage(koalaImg, 300, 300);
+        dogImg   = UtilityTool.scaleImage(dogImg,   300, 300);
+        catImg   = UtilityTool.scaleImage(catImg,   300, 300);
+        koalaImg = UtilityTool.scaleImage(koalaImg, 300, 300);
 
         // button positions
         dogX   = gp.screenWidth / 2 - buttonWidth - 30; dogY   = 300;

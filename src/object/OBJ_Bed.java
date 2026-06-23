@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.UtilityTool;
 
 public class OBJ_Bed extends SuperObject {
 
@@ -17,7 +18,7 @@ public class OBJ_Bed extends SuperObject {
 
         try{
             image = ImageIO.read(getClass().getResourceAsStream("/objects/bed.png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = UtilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
         }catch(IOException e){
             e.printStackTrace();
         }

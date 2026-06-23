@@ -48,13 +48,12 @@ public class TileManager {
 	}
 	
 	public void setup(int index, String imageName, boolean collision) {
-		UtilityTool uTool = new UtilityTool();
 		
 		try {
 			tile[index] = new Tile();
 			
 			tile[index].image = ImageIO.read(getClass().getResource("/tiles/" + imageName + ".png"));
-			tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+			tile[index].image = UtilityTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
 			tile[index].collision = collision;
 		} catch(IOException e) {
 			e.printStackTrace();

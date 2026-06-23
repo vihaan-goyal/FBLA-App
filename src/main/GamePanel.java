@@ -40,19 +40,10 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener {
 	public final int maxWorldCol = 75;
 	public final int maxWorldRow = 75;
 
-	public int currentDay = 1;
-	public final int MAX_DAYS = 30;
-	public int dayTimer = 0;
-	public final int FRAMES_PER_DAY = 1000; // Adjust this value to control the length of each in-game day
     public String petNameInput = "";
 
     // FPS
     int fps = 60;
-
-	// TIME
-	public int hour = 8;
-	public int minute = 0;
-	private int clockTimer = 0;
 
 
     // SYSTEM
@@ -75,7 +66,6 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener {
     
     public final int TITLE_STATE = 0;
     public final int PLAY_STATE = 1;
-	public final int REPORT_STATE = 2;
     public int gameState = TITLE_STATE;
 
     // ENTITY
@@ -131,26 +121,6 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener {
         //empty
     }
 
-	public void updateClock() {
-
-		clockTimer++;
-
-		if (clockTimer >= 45) {  // 30 frames = 1 in-game minute
-			minute++;
-			clockTimer = 0;
-		}
-
-		if (minute >= 60) {
-			minute = 0;
-			hour++;
-		}
-
-		if (hour >= 24) {
-			hour = 0;
-			nextDay();
-		}	
-	}
-
     public void setupGame() {
         aSetter.setObject();
         aSetter.setNPC();
@@ -183,22 +153,6 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener {
 			}
 		}
 	}
-
-	public void nextDay() {
-
-        Pet pet = petManager.currentPet;
-
-
-		currentDay++;
-
-		pet.hunger -= 8;
-		pet.energy -= 6;
-		pet.happiness -= 4;
-
-		if(currentDay > MAX_DAYS) {
-			gameState = REPORT_STATE;
-        }
-    }
 
     public void Update() {
 
@@ -253,14 +207,6 @@ public class GamePanel extends JPanel implements Runnable, MouseMotionListener {
                 }
             }
 
-            updateClock();
-
-            dayTimer++;
-
-            if (dayTimer >= FRAMES_PER_DAY) {
-                nextDay();
-                dayTimer = 0;
-            }
         }
     }
 

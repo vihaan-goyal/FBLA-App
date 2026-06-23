@@ -89,18 +89,22 @@ public class Pet extends Entity {
 
     public void updateStats() {
 
-        statTimer++;
         gameTime++;
         sicknessTimer++;
 
-        if(statTimer > 300) { // every ~5 seconds
+        // decay only starts after the player has spoken to the Old Man (questStage >= 1)
+        boolean decayActive = (gp.npc[0] instanceof NPC_OldMan)
+                && ((NPC_OldMan) gp.npc[0]).questStage >= 1;
 
-            hunger -= hungerDecay;
-            happiness -= happinessDecay;
-            energy -= energyDecay;
-            clampStats();
-
-            statTimer = 0;
+        if (decayActive) {
+            statTimer++;
+            if (statTimer > 300) { // every ~5 seconds
+                hunger    -= hungerDecay;
+                happiness -= happinessDecay;
+                energy    -= energyDecay;
+                clampStats();
+                statTimer = 0;
+            }
         }
     }
 

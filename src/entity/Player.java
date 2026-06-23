@@ -230,7 +230,7 @@ public class Player extends Entity {
 
                     gp.inventoryManager.removeItem("medicine", 1);
 
-                    gp.ui.showMessage("Your" + gp.petManager.currentPet.petType + " feels much better!");
+                    gp.ui.showMessage("Your " + gp.petManager.currentPet.petType + " feels much better!");
 
                 } else {
 

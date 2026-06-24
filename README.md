@@ -31,7 +31,7 @@ The program was built using **Java and Java Swing**.
 3. Navigate to `Main.java`.
 4. Run the program.
 
-The game window will launch and the player can begin interacting with the world.
+The game window will launch, and the player can begin interacting with the world.
 
 The program begins execution from the `main()` method in the `Main` class.
 
@@ -139,14 +139,14 @@ Collision detection prevents players from moving through walls or obstacles.
 The program is organized into several packages to maintain a modular code structure.
 
 ### 📂 `main`
-Handles the **game loop, UI, sound system, and window setup**
+Handles the **game loop, UI, and window setup**
 
 ### 📂 `entity`
 Contains **player and NPC classes**
 
 ### 📂 `object`
 Contains interactable world objects  
-(keys, doors, boots, chests)
+(chests, beds)
 
 ### 📂 `tile`
 Handles **map loading and rendering**

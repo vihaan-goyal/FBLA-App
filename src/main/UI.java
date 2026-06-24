@@ -126,23 +126,23 @@ public class UI {
         if (icon != null) g2.drawImage(icon, x, y - 20, 24, 24, null);
 
         // label — left-aligned after icon
-        g2.setFont(smallFont);
+        g2.setFont(popupFont);
         g2.setColor(C_WHITE);
         g2.drawString(label, x + 32, y);
 
         // track — starts at fixed barX so all bars align
         g2.setColor(new Color(80, 50, 20, 180));
-        g2.fillRoundRect(barX, y - 18, barW, barH, 10, 10);
+        g2.fillRoundRect(barX, y - 18, barW, barH, 1, 1);
 
         // fill
         int filled = Math.max((int)(barW * (value / 100.0)), 4);
         g2.setColor(fill);
-        g2.fillRoundRect(barX, y - 18, filled, barH, 10, 10);
+        g2.fillRoundRect(barX, y - 18, filled, barH, 1, 1);
 
         // border
         g2.setColor(C_BORDER);
-        g2.setStroke(new BasicStroke(2));
-        g2.drawRoundRect(barX, y - 18, barW, barH, 10, 10);
+        g2.setStroke(new BasicStroke(4));
+        g2.drawRoundRect(barX, y - 18, barW, barH, 1, 1);
     }
 
     // ================================================================
@@ -254,34 +254,35 @@ public class UI {
         // header
         g2.setFont(menuFont);
         g2.setColor(C_WHITE);
-        g2.drawString("Pet Status", px, py + 40);
+        g2.drawString("Pet Stats", px, py + 40);
 
         drawDivider(g2, px, py + 52, pw);
 
         if (gp.petManager.currentPet == null) return;
         var pet    = gp.petManager.currentPet;
         int barW   = 230;
-        int barX   = px + 160;   // fixed column — all bars start here
+        int barX   = px + 140;   // fixed column — all bars start here
         int startY = py + 96;
         int gap    = 46;
 
         drawStatBar(g2, hungerIcon,    "Hunger:",    pet.hunger,    new Color(200, 90,  20), px, startY,         barX, barW);
-        drawStatBar(g2, happinessIcon, "Happiness:", pet.happiness, new Color(255, 210, 50), px, startY + gap,   barX, barW);
+        drawStatBar(g2, happinessIcon, "Mood:", pet.happiness, new Color(255, 210, 50), px, startY + gap,   barX, barW);
         drawStatBar(g2, energyIcon,    "Energy:",    pet.energy,    new Color(60,  185, 80), px, startY + gap*2, barX, barW);
 
         int divY = startY + gap * 3 - 4;
         drawDivider(g2, px, divY, pw);
 
         int statusY = divY + 38;
-        g2.setFont(optionFont);
+        g2.setFont(new Font("Verdana",  Font.BOLD,30));
         g2.setColor(C_WHITE);
         g2.drawString("Status:", px, statusY);
+        g2.setFont(new Font("Verdana",  Font.PLAIN,30));
         if (pet.sick) {
             g2.setColor(new Color(255, 85, 85));
-            g2.drawString("Sick", px + 120, statusY);
+            g2.drawString("Sick", px + 130, statusY);
         } else {
-            g2.setColor(new Color(100, 230, 110));
-            g2.drawString("Healthy", px + 120, statusY);
+            g2.setColor(new Color(80, 200, 120));
+            g2.drawString("Healthy", px + 130, statusY);
         }
 
         g2.setFont(smallFont);
@@ -455,7 +456,7 @@ public class UI {
         g2.drawString("4  Pet Stats", kx, ky);          ky += ks + 4;
         g2.setColor(new Color(255, 255, 255, 100));
         g2.setStroke(new BasicStroke(1));
-        g2.drawLine(kx, ky - 2, kx + 148, ky - 2);
+        g2.drawLine(kx, ky - 20, kx + 148, ky - 20);
         g2.setColor(C_WHITE);                           ky += 6;
         g2.drawString("F  Feed",      kx, ky);          ky += ks;
         g2.drawString("M  Medicine",  kx, ky);          ky += ks;

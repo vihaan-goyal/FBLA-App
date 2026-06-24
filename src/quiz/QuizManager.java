@@ -1,17 +1,17 @@
 package quiz;
 
 import java.util.Random;
-
+import javax.swing.SwingUtilities;
 import main.GamePanel;
 
 public class QuizManager {
 
     GamePanel gp;
-
     String question;
     String playerAnswer;
 
     public int quizState = 0;
+    public boolean loading = false;   // add this
 
     public QuizManager(GamePanel gp){
         this.gp = gp;
@@ -48,33 +48,62 @@ public class QuizManager {
 
     public void submitAnswer(String answer){
 
-        quizState = 3;
+        // capture values for the background thread
+        final String q = question;
+        final String a = answer;
 
-        GradeResult result = ChatGPTGrader.grade(question, answer);
+        loading = true;
+        quizState = 3; // grading
+        gp.ui.speaker = "Quizzard";
 
-        int score = result.score;
-        String reason = result.reason;
-        
+        Thread graderThread = new Thread(() -> {
 
-        int reward = score / 2;
+            long start = System.currentTimeMillis();
 
-        gp.wallet.earn("Quiz Reward", reward);
+            // runs OFF the UI thread, so the game keeps rendering
+            GradeResult result = ChatGPTGrader.grade(q, a);
 
-        if(reason != null){
-            gp.ui.startDialogue(new String[]{
-                "Hmm...",
-                "Your answer score: " + score + "/100",
-                reason,
-                "You earned $" + reward + "!"
+            // enforce a minimum 3 second spinner so the animation always shows
+            long elapsed = System.currentTimeMillis() - start;
+            if(elapsed < 3000){
+                try {
+                    Thread.sleep(3000 - elapsed);
+                } catch(InterruptedException e){
+                    // ignore, just proceed
+                }
+            }
+
+            // apply the result back on the UI thread
+            SwingUtilities.invokeLater(() -> {
+
+                int score = result.score;
+                String reason = result.reason;
+
+                int reward = score / 2;
+
+                gp.wallet.earn("Quiz Reward", reward);
+
+                if(reason != null){
+                    gp.ui.startDialogue(new String[]{
+                        "Hmm...",
+                        "Your answer score: " + score + "/100",
+                        reason,
+                        "You earned $" + reward + "!"
+                    });
+                }else{
+                    gp.ui.startDialogue(new String[]{
+                        "Hmm...",
+                        "Your answer score: " + score + "/100",
+                        "You earned $" + reward + "!"
+                    });
+                }
+
+                loading = false;
+                quizState = 0;
             });
-        }else{
-            gp.ui.startDialogue(new String[]{
-                "Hmm...",
-                "Your answer score: " + score + "/100",
-                "You earned $" + reward + "!"
-            });
-}
+        });
 
-        quizState = 0;
-    }
+        graderThread.setDaemon(true);
+        graderThread.start();
+    }   
 }

@@ -165,6 +165,48 @@ public class UI {
     //  MAIN DRAW DISPATCH
     // ================================================================
 
+    //Helper method to draw the quiz loading screen
+    public void drawQuizLoading(Graphics2D g2){
+
+        int boxX = gp.tileSize;
+        int boxY = gp.screenHeight - gp.tileSize * 4;
+        int boxWidth = gp.screenWidth - gp.tileSize * 2;
+        int boxHeight = gp.tileSize * 2;
+
+        // background
+        g2.setColor(new Color(0,0,0,200));
+        g2.fillRoundRect(boxX, boxY, boxWidth, boxHeight, 25, 25);
+
+        // border
+        g2.setColor(Color.WHITE);
+        g2.setStroke(new BasicStroke(4));
+        g2.drawRoundRect(boxX, boxY, boxWidth, boxHeight, 25, 25);
+
+        long t = System.currentTimeMillis();
+
+        // animated dots (0..3)
+        int dotCount = (int)((t / 400) % 4);
+        StringBuilder dots = new StringBuilder();
+        for(int i = 0; i < dotCount; i++) dots.append(".");
+
+        g2.setFont(optionFont);
+        g2.setColor(Color.WHITE);
+        g2.drawString("Quizzard is grading your answer" + dots, boxX + 20, boxY + 55);
+
+        // spinning ring on the right
+        int r = 18;
+        int cx = boxX + boxWidth - 55;
+        int cy = boxY + boxHeight / 2;
+        int startAngle = (int)((t / 3) % 360);
+
+        g2.setColor(new Color(80,80,80));
+        g2.setStroke(new BasicStroke(5));
+        g2.drawOval(cx - r, cy - r, r*2, r*2);          // faint full ring
+
+        g2.setColor(new Color(255, 215, 0));            // gold sweep
+        g2.drawArc(cx - r, cy - r, r*2, r*2, startAngle, 90);
+    }
+
     public void draw(Graphics2D g2) {
         aa(g2);
 
@@ -192,6 +234,9 @@ public class UI {
             g2.setFont(optionFont);
             g2.setColor(C_WHITE);
             g2.drawString("Answer: " + currentInput + "_", bx + 24, by + 56);
+        }
+        if(gp.quizManager.loading){
+            drawQuizLoading(g2);
         }
     }
 

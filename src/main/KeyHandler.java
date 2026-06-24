@@ -50,6 +50,11 @@ public class KeyHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
+        // freeze input while the quiz answer is being graded
+        if(gp.quizManager.loading){
+            return;
+        }
+
         if(code == KeyEvent.VK_BACK_SPACE){
 
             if(gp.ui.typingMode && gp.ui.currentInput.length() > 0){

@@ -450,18 +450,18 @@ public class UI {
         g2.setFont(smallFont);
         g2.setColor(C_WHITE);
         int kx = 16, ky = 36, ks = 26;
-        g2.drawString("1  Wallet",    kx, ky);          ky += ks;
-        g2.drawString("2  Inventory", kx, ky);          ky += ks;
-        g2.drawString("3  Tasks",     kx, ky);          ky += ks;
-        g2.drawString("4  Pet Stats", kx, ky);          ky += ks + 4;
+        g2.drawString("1 - Wallet",    kx, ky);          ky += ks;
+        g2.drawString("2 - Inventory", kx, ky);          ky += ks;
+        g2.drawString("3 - Tasks",     kx, ky);          ky += ks;
+        g2.drawString("4 - Pet Stats", kx, ky);          ky += ks + 4;
         g2.setColor(new Color(255, 255, 255, 100));
         g2.setStroke(new BasicStroke(1));
         g2.drawLine(kx, ky - 20, kx + 148, ky - 20);
         g2.setColor(C_WHITE);                           ky += 6;
-        g2.drawString("F  Feed",      kx, ky);          ky += ks;
-        g2.drawString("M  Medicine",  kx, ky);          ky += ks;
-        g2.drawString("P  Play",      kx, ky);          ky += ks;
-        g2.drawString("↵  Interact",  kx, ky);
+        g2.drawString("F - Feed",      kx, ky);          ky += ks;
+        g2.drawString("M - Medicine",  kx, ky);          ky += ks;
+        g2.drawString("P - Play",      kx, ky);          ky += ks;
+        g2.drawString("Enter - Interact",  kx, ky);
 
         // message popup — dark box, centered
         if (messageOn) {

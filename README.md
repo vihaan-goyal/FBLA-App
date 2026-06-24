@@ -224,3 +224,6 @@ Resources used to aid in the development of our presentation and application
 - OpenAI ChatGPT API Documentation – Used to implement automated grading of quiz responses
 - Stack Overflow – Troubleshooting programming errors and debugging techniques
 - Java Swing Documentation – Used for building the graphical user interface
+- RyiSnow - "How to Make a 2D Game in Java" YouTube series. Used as the foundation for the core game engine (game loop, tile rendering, collision detection, and entity movement). All pet care, quest, quiz, economy, and UI systems were built originally on top of this base.
+
+

@@ -11,9 +11,9 @@ public class Cat extends Pet {
     public Cat(GamePanel gp) {
         super(gp);
 
-        hungerDecay = 3;
-        happinessDecay = 4;
-        energyDecay = 3;
+        hungerDecay = 4;
+        happinessDecay = 5;
+        energyDecay = 4;
     }
 
     @Override

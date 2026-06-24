@@ -7,7 +7,7 @@ public class NPC_ToyMerchant extends NPC {
     private boolean hasSpoken = false;
 
     public NPC_ToyMerchant(GamePanel gp) {
-        super(gp, "Toy Seller");
+        super(gp, "Toy Merchant");
         down1 = loadSprite("/npc/toyMerchant.png", gp.tileSize, gp.tileSize);
     }
 

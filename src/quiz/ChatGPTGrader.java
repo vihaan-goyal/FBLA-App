@@ -119,7 +119,7 @@ public class ChatGPTGrader {
     // fallback method
     private static GradeResult fallback(){
         int fallbackScore = (int)(Math.random() * 40 + 30);
-        return new GradeResult(fallbackScore, "Fallback grading used");
+        return new GradeResult(fallbackScore, null);
     }
 
     static int extractScore(String text){

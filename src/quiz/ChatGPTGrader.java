@@ -110,7 +110,7 @@ public class ChatGPTGrader {
             return new GradeResult(score, reason);
 
         }catch(Exception e){
-            System.out.println("API failed → using fallback");
+            System.out.println("API failed. using fallback");
             System.out.println(e.getMessage());
             return fallback();
         }

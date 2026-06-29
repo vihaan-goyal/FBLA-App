@@ -2,6 +2,7 @@ package quiz;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
@@ -37,7 +38,7 @@ public class ChatGPTGrader {
 
         try{
 
-            final URL url = new URL("https://api.openai.com/v1/chat/completions");
+            final URL url = URI.create("https://api.openai.com/v1/chat/completions").toURL();
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");

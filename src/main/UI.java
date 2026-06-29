@@ -694,7 +694,40 @@ public class UI {
 
         g2.setFont(new Font("Verdana", Font.PLAIN, 13));
         g2.setColor(C_DIM);
-        g2.drawString("↑ ↓  scroll", rx, py + (gp.screenHeight / 2) - 16);
+        drawScrollHint(g2, lx, y + 40);
+    }
+
+    // small keycap hint showing the up/down arrows scroll the transaction list
+    private void drawScrollHint(Graphics2D g2, int x, int y) {
+        int capW = 26, capH = 24, gap = 6;
+
+        drawArrowKey(g2, x,              y, capW, capH, true);   // up
+        drawArrowKey(g2, x + capW + gap, y, capW, capH, false);  // down
+
+        g2.setFont(new Font("Verdana", Font.PLAIN, 14));
+        g2.setColor(C_DIM);
+        g2.drawString("Scroll transactions", x + capW * 2 + gap + 10, y + capH - 7);
+    }
+
+    // one rounded keycap with a triangle arrow pointing up or down
+    private void drawArrowKey(Graphics2D g2, int x, int y, int w, int h, boolean up) {
+        g2.setColor(new Color(150, 100, 55));   // darker than the panel for contrast
+        g2.fillRoundRect(x, y, w, h, 8, 8);
+        g2.setColor(C_BORDER);
+        g2.setStroke(new BasicStroke(2));
+        g2.drawRoundRect(x, y, w, h, 8, 8);
+
+        int cx = x + w / 2;
+        int cy = y + h / 2;
+        int a  = 5;   // half-size of the triangle
+        g2.setColor(C_WHITE);
+        if (up) {
+            g2.fillPolygon(new int[]{ cx, cx - a, cx + a },
+                        new int[]{ cy - a, cy + a, cy + a }, 3);
+        } else {
+            g2.fillPolygon(new int[]{ cx, cx - a, cx + a },
+                        new int[]{ cy + a, cy - a, cy - a }, 3);
+        }
     }
 
     private void drawWalletRow(Graphics2D g2, String label, String value, int x, int y) {

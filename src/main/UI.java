@@ -630,7 +630,7 @@ public class UI {
         g2.drawString("Wallet", px, py + 40);
         drawDivider(g2, px, py + 52, pw);
 
-        // left column — balance + breakdown
+        // left column: balance + breakdown
         int lx = px;
         int y  = py + 96;
 
@@ -660,7 +660,7 @@ public class UI {
         g2.setColor(C_DIM);
         g2.drawString("Press 1 to close", lx, y + 28);
 
-        // right column — transaction history
+        // right column: transaction history
         int rx  = px + pw / 2 + 10;
         int ty  = py + 75;
 
@@ -677,24 +677,73 @@ public class UI {
         ty += 20;
 
         if (transactionScroll < 0) transactionScroll = 0;
-        int maxScroll = Math.max(0, gp.wallet.history.size() - maxVisibleTransactions);
+        int total     = gp.wallet.history.size();
+        int maxScroll = Math.max(0, total - maxVisibleTransactions);
         if (transactionScroll > maxScroll) transactionScroll = maxScroll;
 
-        int end = Math.min(transactionScroll + maxVisibleTransactions, gp.wallet.history.size());
+        int end = Math.min(transactionScroll + maxVisibleTransactions, total);
+
+        // count summary (primary overflow signal)
+        g2.setFont(new Font("Verdana", Font.PLAIN, 13));
+        g2.setColor(C_DIM);
+        if (total == 0) {
+            g2.drawString("No transactions yet", rx, ty);
+        } else {
+            g2.drawString("Showing " + (transactionScroll + 1) + "-" + end + " of " + total, rx, ty);
+        }
+        ty += 22;
+
+        // more above
+        if (transactionScroll > 0) {
+            g2.setColor(new Color(255, 215, 120));
+            drawTri(g2, rx + 5, ty - 5, true);
+            g2.drawString(transactionScroll + " more above", rx + 18, ty);
+            ty += 22;
+        }
+
+        // numbered transaction rows
+        int numX  = rx;
+        int amtX  = rx + 38;
+        int descX = amtX + 58;
         g2.setFont(new Font("Verdana", Font.PLAIN, 15));
         for (int i = transactionScroll; i < end; i++) {
-            Transaction t  = gp.wallet.history.get(i);
-            String sign    = t.amount > 0 ? "+" : "";
+            Transaction t = gp.wallet.history.get(i);
+            String sign   = t.amount > 0 ? "+" : "";
+
+            g2.setColor(C_DIM);
+            g2.drawString((i + 1) + ".", numX, ty);
+
             g2.setColor(t.amount > 0 ? new Color(150, 230, 150) : new Color(230, 130, 130));
-            g2.drawString(sign + "$" + t.amount, rx, ty);
+            g2.drawString(sign + "$" + t.amount, amtX, ty);
+
             g2.setColor(C_WHITE);
-            g2.drawString("  " + t.description, rx + 58, ty);
+            g2.drawString(t.description, descX, ty);
+
             ty += 24;
+        }
+
+        // more below
+        int below = total - end;
+        if (below > 0) {
+            g2.setFont(new Font("Verdana", Font.PLAIN, 13));
+            g2.setColor(new Color(255, 215, 120));
+            drawTri(g2, rx + 5, ty - 4, false);
+            g2.drawString(below + " more below", rx + 18, ty);
         }
 
         g2.setFont(new Font("Verdana", Font.PLAIN, 13));
         g2.setColor(C_DIM);
         drawScrollHint(g2, lx, y + 40);
+    }
+
+    // small filled triangle used for the overflow cues
+    private void drawTri(Graphics2D g2, int x, int y, boolean up) {
+        int a = 5;
+        if (up) {
+            g2.fillPolygon(new int[]{ x, x - a, x + a }, new int[]{ y - a, y + a, y + a }, 3);
+        } else {
+            g2.fillPolygon(new int[]{ x, x - a, x + a }, new int[]{ y + a, y - a, y - a }, 3);
+        }
     }
 
     // small keycap hint showing the up/down arrows scroll the transaction list

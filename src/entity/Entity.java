@@ -53,7 +53,7 @@ public class Entity {
     }
 
     // ----------------------------------------------------------------
-    //  Default draw — camera-corrected, sized to tileSize
+    //  Default draw - camera-corrected, sized to tileSize
     // ----------------------------------------------------------------
 
     public void draw(Graphics2D g2, GamePanel gp) {

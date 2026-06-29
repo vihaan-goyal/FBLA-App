@@ -18,13 +18,12 @@ public class UI {
 
     GamePanel gp;
 
-    // Georgia for display, Verdana for body — both ship with Windows
-    Font titleFont;    // Georgia Bold 76   — main title
-    Font menuFont;     // Georgia Bold 44   — panel headers
-    Font optionFont;   // Verdana Plain 28  — primary body text
-    Font smallFont;    // Verdana Plain 18  — secondary / labels
-    Font popupFont;    // Verdana Bold 22   — popup messages
-    Font subtitleFont; // Georgia Italic 32 — title-screen subtitle
+    Font titleFont;    // Georgia Bold 76   - main title
+    Font menuFont;     // Georgia Bold 44   - panel headers
+    Font optionFont;   // Verdana Plain 28  - primary body text
+    Font smallFont;    // Verdana Plain 18  - secondary / labels
+    Font popupFont;    // Verdana Bold 22   - popup messages
+    Font subtitleFont; // Georgia Italic 32 - title-screen subtitle
 
     BufferedImage hungerIcon;
     BufferedImage happinessIcon;
@@ -33,7 +32,7 @@ public class UI {
     // ---- original palette ----
     static final Color C_PANEL  = new Color(232, 169, 97);   // warm tan
     static final Color C_BORDER = new Color(115, 83,  47);   // dark brown
-    static final Color C_DARK   = new Color(190, 130, 65);   // mid-brown — dividers
+    static final Color C_DARK   = new Color(190, 130, 65);   // mid-brown - dividers
     static final Color C_WHITE  = Color.WHITE;
     static final Color C_DIM    = new Color(255, 255, 255, 180);
 
@@ -125,12 +124,12 @@ public class UI {
         // icon
         if (icon != null) g2.drawImage(icon, x, y - 20, 24, 24, null);
 
-        // label — left-aligned after icon
+        // label - left-aligned after icon
         g2.setFont(popupFont);
         g2.setColor(C_WHITE);
         g2.drawString(label, x + 32, y);
 
-        // track — starts at fixed barX so all bars align
+        // track - starts at fixed barX so all bars align
         g2.setColor(new Color(80, 50, 20, 180));
         g2.fillRoundRect(barX, y - 18, barW, barH, 1, 1);
 
@@ -263,7 +262,7 @@ public class UI {
 
         // speaker name on its own line
         g2.setFont(new Font("Georgia", Font.BOLD, 22));
-        g2.setColor(new Color(255, 220, 140));   // warm amber — readable on black
+        g2.setColor(new Color(255, 220, 140));   // warm amber - readable on black
         g2.drawString(speaker, bx + 24, by + 30);
 
         // thin separator under speaker
@@ -306,7 +305,7 @@ public class UI {
         if (gp.petManager.currentPet == null) return;
         var pet    = gp.petManager.currentPet;
         int barW   = 230;
-        int barX   = px + 140;   // fixed column — all bars start here
+        int barX   = px + 140;   // fixed column - all bars start here
         int startY = py + 96;
         int gap    = 46;
 
@@ -449,7 +448,7 @@ public class UI {
         g2.setColor(C_WHITE);
         g2.drawString(lbl, gp.screenWidth / 2 - fm.stringWidth(lbl) / 2, boxY - 16);
 
-        // input box — tints green border when ready
+        // input box - tints green border when ready
         g2.setColor(new Color(0, 0, 0, 100));
         g2.fillRoundRect(boxX, boxY, boxW, boxH, 10, 10);
         g2.setColor(ready ? new Color(140, 230, 140) : C_WHITE);
@@ -491,7 +490,7 @@ public class UI {
     public void drawHUD(Graphics2D g2) {
         aa(g2);
 
-        // keybind list — top-left, tight spacing
+        // keybind list - top-left, tight spacing
         g2.setFont(smallFont);
         g2.setColor(C_WHITE);
         int kx = 16, ky = 36, ks = 26;
@@ -508,7 +507,7 @@ public class UI {
         g2.drawString("P - Play",      kx, ky);          ky += ks;
         g2.drawString("Enter - Interact",  kx, ky);
 
-        // message popup — dark box, centered
+        // message popup - dark box, centered
         if (messageOn) {
             g2.setFont(popupFont);
             FontMetrics fm = g2.getFontMetrics();

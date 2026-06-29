@@ -3,6 +3,3 @@ config.properties
 
 # Java
 *.class
-
-# IDE
-.vscode/

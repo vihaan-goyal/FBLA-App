@@ -16,7 +16,7 @@ public class NPC_Merchant extends NPC {
         if (!hasSpoken) {
             hasSpoken = true;
             say(
-                "Welcome to my pet shop!",
+                "Welcome to my pet food shop!",
                 "Fresh pet food for only $10.",
                 "Come back anytime if your pet gets hungry."
             );
